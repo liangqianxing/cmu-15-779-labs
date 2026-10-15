@@ -1,6 +1,6 @@
 # CMU 15-779 代码实验
 
-CMU 15-779 学习记录中的配套代码。当前练习在 CPU 上运行，包含自动求导、线性回归、小型 ReLU 网络、DataLoader、参数保存、批量推理、绝对值网络与算子性能分析。
+CMU 15-779 学习记录中的配套代码。已运行的 CPU 练习包含自动求导、线性回归、小型 ReLU 网络、DataLoader、参数保存、批量推理、绝对值网络、算子性能分析和 CUDA 索引演示。`cuda/` 中的 CUDA C++ 源码尚未编译或执行。
 
 ## 环境
 
@@ -24,6 +24,7 @@ python3.11 -m venv .venv
 | [03：DataLoader、模型保存与批量推理](https://liangqianxing.github.io/posts/cmu-15-779-pytorch-dataloader-checkpoints-batching/) | `11` 至 `16` | 分批训练、参数恢复、推理计时和矩阵乘法 |
 | [04：多输出线性层、ReLU 与绝对值网络](https://liangqianxing.github.io/posts/cmu-15-779-pytorch-linear-relu-absolute-value/) | `16` 至 `19` | Linear 参数对照、多输出、逐层计算和绝对值拟合 |
 | [05：Profiler、算子调用与批量推理](https://liangqianxing.github.io/posts/cmu-15-779-profiler-operator-batching/) | `22` 至 `24` | 前向计算分析、调用次数与固定工作量的 batch size 扫描 |
+| [06：CUDA 线程索引与边界检查](https://liangqianxing.github.io/posts/cmu-15-779-cuda-thread-indexing/) | `25` | CPU 索引演示、边界案例及未执行的 CUDA 源码 |
 
 各脚本是逐步练习的独立版本，可以按编号运行。
 
@@ -50,6 +51,7 @@ python3.11 -m venv .venv
 .venv/bin/python 22_profile_forward.py
 .venv/bin/python 23_profile_batching.py
 .venv/bin/python 24_batch_size_sweep.py --output results/24_batch_size_sweep-rerun.json
+.venv/bin/python 25_cuda_indexing.py --output results/25_cuda_indexing-rerun.json
 ```
 
 ## 复现说明
@@ -66,5 +68,6 @@ python3.11 -m venv .venv
 - `19_learn_abs.py` 使用随机种子 `0`、21 个训练点和 SGD（学习率 `0.05`），训练 3000 步。训练集均方误差约为 `0.00005678`；检查输入 `[-0.8, 0, 0.8]` 同样包含在训练集中，不能作为独立测试集评估。
 
 - `22` 至 `24` 是对照 ML Systems 基础的个人配套实验，不是 CMU 官方作业。`24` 固定一个 CPU 线程，将完整处理全部输入样本作为计时单位；原始测量保存在 `results/24_batch_size_sweep.json`，复跑时用 `--output` 另存。
+- `25_cuda_indexing.py` 只在 CPU 上演示索引映射，原始结果保存在 `results/25_cuda_indexing.json` 和 `results/25_indexing_17_8.json`。它不测 GPU 性能，也不能证明 CUDA 设备内存访问安全。`cuda/25_vector_add.cu` 尚未编译执行，验证方法与当前限制见 [CUDA 运行说明](cuda/README.md)。
 
 [课程学习专题](https://liangqianxing.github.io/learning/cmu-15-779/)提供学习资料与上述记录的入口。

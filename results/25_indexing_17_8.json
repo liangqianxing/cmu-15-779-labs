@@ -1,0 +1,244 @@
+{
+  "recorded_at": "2026-10-15T16:37:05.906484+08:00",
+  "script_sha256": "8c60655677a68973b1094423295f737378bbcd9a9cb81d4726d3cd092dd7d669",
+  "execution": "CPU indexing model; no CUDA kernel executed",
+  "environment": {
+    "architecture": "arm64",
+    "python": "3.11.15",
+    "torch": "2.14.1",
+    "cuda_available": false,
+    "torch_cuda_build": null,
+    "mps_available": true
+  },
+  "cuda_execution_verified": false,
+  "example": {
+    "n": 17,
+    "threads_per_block": 8,
+    "blocks": 3,
+    "launched_threads": 24,
+    "guarded_threads": 7,
+    "outputs_exact": true,
+    "every_element_written_once": true,
+    "output": [
+      10.0,
+      11.0,
+      12.0,
+      13.0,
+      14.0,
+      15.0,
+      16.0,
+      17.0,
+      18.0,
+      19.0,
+      20.0,
+      21.0,
+      22.0,
+      23.0,
+      24.0,
+      25.0,
+      26.0
+    ],
+    "mapping": [
+      {
+        "block_idx": 0,
+        "thread_idx": 0,
+        "global_index": 0,
+        "writes_output": true
+      },
+      {
+        "block_idx": 0,
+        "thread_idx": 1,
+        "global_index": 1,
+        "writes_output": true
+      },
+      {
+        "block_idx": 0,
+        "thread_idx": 2,
+        "global_index": 2,
+        "writes_output": true
+      },
+      {
+        "block_idx": 0,
+        "thread_idx": 3,
+        "global_index": 3,
+        "writes_output": true
+      },
+      {
+        "block_idx": 0,
+        "thread_idx": 4,
+        "global_index": 4,
+        "writes_output": true
+      },
+      {
+        "block_idx": 0,
+        "thread_idx": 5,
+        "global_index": 5,
+        "writes_output": true
+      },
+      {
+        "block_idx": 0,
+        "thread_idx": 6,
+        "global_index": 6,
+        "writes_output": true
+      },
+      {
+        "block_idx": 0,
+        "thread_idx": 7,
+        "global_index": 7,
+        "writes_output": true
+      },
+      {
+        "block_idx": 1,
+        "thread_idx": 0,
+        "global_index": 8,
+        "writes_output": true
+      },
+      {
+        "block_idx": 1,
+        "thread_idx": 1,
+        "global_index": 9,
+        "writes_output": true
+      },
+      {
+        "block_idx": 1,
+        "thread_idx": 2,
+        "global_index": 10,
+        "writes_output": true
+      },
+      {
+        "block_idx": 1,
+        "thread_idx": 3,
+        "global_index": 11,
+        "writes_output": true
+      },
+      {
+        "block_idx": 1,
+        "thread_idx": 4,
+        "global_index": 12,
+        "writes_output": true
+      },
+      {
+        "block_idx": 1,
+        "thread_idx": 5,
+        "global_index": 13,
+        "writes_output": true
+      },
+      {
+        "block_idx": 1,
+        "thread_idx": 6,
+        "global_index": 14,
+        "writes_output": true
+      },
+      {
+        "block_idx": 1,
+        "thread_idx": 7,
+        "global_index": 15,
+        "writes_output": true
+      },
+      {
+        "block_idx": 2,
+        "thread_idx": 0,
+        "global_index": 16,
+        "writes_output": true
+      },
+      {
+        "block_idx": 2,
+        "thread_idx": 1,
+        "global_index": 17,
+        "writes_output": false
+      },
+      {
+        "block_idx": 2,
+        "thread_idx": 2,
+        "global_index": 18,
+        "writes_output": false
+      },
+      {
+        "block_idx": 2,
+        "thread_idx": 3,
+        "global_index": 19,
+        "writes_output": false
+      },
+      {
+        "block_idx": 2,
+        "thread_idx": 4,
+        "global_index": 20,
+        "writes_output": false
+      },
+      {
+        "block_idx": 2,
+        "thread_idx": 5,
+        "global_index": 21,
+        "writes_output": false
+      },
+      {
+        "block_idx": 2,
+        "thread_idx": 6,
+        "global_index": 22,
+        "writes_output": false
+      },
+      {
+        "block_idx": 2,
+        "thread_idx": 7,
+        "global_index": 23,
+        "writes_output": false
+      }
+    ]
+  },
+  "edge_cases": [
+    {
+      "n": 0,
+      "threads_per_block": 4,
+      "blocks": 0,
+      "launched_threads": 0,
+      "guarded_threads": 0,
+      "outputs_exact": true,
+      "every_element_written_once": true
+    },
+    {
+      "n": 1,
+      "threads_per_block": 4,
+      "blocks": 1,
+      "launched_threads": 4,
+      "guarded_threads": 3,
+      "outputs_exact": true,
+      "every_element_written_once": true
+    },
+    {
+      "n": 8,
+      "threads_per_block": 4,
+      "blocks": 2,
+      "launched_threads": 8,
+      "guarded_threads": 0,
+      "outputs_exact": true,
+      "every_element_written_once": true
+    },
+    {
+      "n": 10,
+      "threads_per_block": 4,
+      "blocks": 3,
+      "launched_threads": 12,
+      "guarded_threads": 2,
+      "outputs_exact": true,
+      "every_element_written_once": true
+    },
+    {
+      "n": 17,
+      "threads_per_block": 32,
+      "blocks": 1,
+      "launched_threads": 32,
+      "guarded_threads": 15,
+      "outputs_exact": true,
+      "every_element_written_once": true
+    },
+    {
+      "n": 257,
+      "threads_per_block": 128,
+      "blocks": 3,
+      "launched_threads": 384,
+      "guarded_threads": 127,
+      "outputs_exact": true,
+      "every_element_written_once": true
+    }
+  ]
+}
