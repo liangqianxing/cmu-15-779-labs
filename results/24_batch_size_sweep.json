@@ -1,0 +1,176 @@
+{
+  "course": "CMU 15-779, Lecture 2 companion exercise",
+  "recorded_at": "2026-10-15T16:00:50.878490+08:00",
+  "script_sha256": "669b8e7714d5acde3f68c9edccd5e73889ba849b5c86546e4796846371c1d858",
+  "environment": {
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "architecture": "arm64",
+    "python": "3.11.15",
+    "torch": "2.14.1",
+    "device": "cpu",
+    "dtype": "torch.float32",
+    "cpu_threads": 1
+  },
+  "setup": {
+    "seed": 0,
+    "samples": 1000,
+    "batch_sizes": [
+      1,
+      4,
+      16,
+      64,
+      128,
+      256,
+      1000
+    ],
+    "model": "Linear(1, 8) -> ReLU -> Linear(8, 1)",
+    "model_parameters": 25,
+    "grad_enabled_during_measurement": false,
+    "timing_includes": "Python batching, slicing, forward passes, one cat",
+    "timing_excludes": "input/model creation, profiler, output validation, file I/O",
+    "measurement_unit": "one complete pass over all input samples",
+    "min_timing_seconds_per_batch_size": 0.2
+  },
+  "rows": [
+    {
+      "batch_size": 1,
+      "batches": 1000,
+      "last_batch_size": 1,
+      "samples_processed": 1000,
+      "outputs_close": true,
+      "max_abs_error": 2.9802322387695312e-08,
+      "operator_calls": {
+        "aten::linear": 2000,
+        "aten::addmm": 2000,
+        "aten::relu": 1000,
+        "aten::slice": 1000,
+        "aten::cat": 1
+      },
+      "median_total_ms": 8.149395900545642,
+      "iqr_total_ms": 0.05282709898892651,
+      "samples_per_second": 122708.48197877406,
+      "timing_blocks": 3,
+      "runs_per_block": 10
+    },
+    {
+      "batch_size": 4,
+      "batches": 250,
+      "last_batch_size": 4,
+      "samples_processed": 1000,
+      "outputs_close": true,
+      "max_abs_error": 0.0,
+      "operator_calls": {
+        "aten::linear": 500,
+        "aten::addmm": 500,
+        "aten::relu": 250,
+        "aten::slice": 250,
+        "aten::cat": 1
+      },
+      "median_total_ms": 2.1457270995597355,
+      "iqr_total_ms": 0.012971900287084108,
+      "samples_per_second": 466042.4898418732,
+      "timing_blocks": 10,
+      "runs_per_block": 10
+    },
+    {
+      "batch_size": 16,
+      "batches": 63,
+      "last_batch_size": 8,
+      "samples_processed": 1000,
+      "outputs_close": true,
+      "max_abs_error": 0.0,
+      "operator_calls": {
+        "aten::linear": 126,
+        "aten::addmm": 126,
+        "aten::relu": 63,
+        "aten::slice": 63,
+        "aten::cat": 1
+      },
+      "median_total_ms": 0.5378216650569813,
+      "iqr_total_ms": 0.0006035401747795342,
+      "samples_per_second": 1859352.393128402,
+      "timing_blocks": 4,
+      "runs_per_block": 100
+    },
+    {
+      "batch_size": 64,
+      "batches": 16,
+      "last_batch_size": 40,
+      "samples_processed": 1000,
+      "outputs_close": true,
+      "max_abs_error": 0.0,
+      "operator_calls": {
+        "aten::linear": 32,
+        "aten::addmm": 32,
+        "aten::relu": 16,
+        "aten::slice": 16,
+        "aten::cat": 1
+      },
+      "median_total_ms": 0.13900124991778284,
+      "iqr_total_ms": 0.0006329199823085446,
+      "samples_per_second": 7194179.912709311,
+      "timing_blocks": 15,
+      "runs_per_block": 100
+    },
+    {
+      "batch_size": 128,
+      "batches": 8,
+      "last_batch_size": 104,
+      "samples_processed": 1000,
+      "outputs_close": true,
+      "max_abs_error": 0.0,
+      "operator_calls": {
+        "aten::linear": 16,
+        "aten::addmm": 16,
+        "aten::relu": 8,
+        "aten::slice": 8,
+        "aten::cat": 1
+      },
+      "median_total_ms": 0.07236749996081926,
+      "iqr_total_ms": 0.0003172949072904863,
+      "samples_per_second": 13818357.695670202,
+      "timing_blocks": 28,
+      "runs_per_block": 100
+    },
+    {
+      "batch_size": 256,
+      "batches": 4,
+      "last_batch_size": 232,
+      "samples_processed": 1000,
+      "outputs_close": true,
+      "max_abs_error": 0.0,
+      "operator_calls": {
+        "aten::linear": 8,
+        "aten::addmm": 8,
+        "aten::relu": 4,
+        "aten::slice": 4,
+        "aten::cat": 1
+      },
+      "median_total_ms": 0.03850460398825817,
+      "iqr_total_ms": 0.00011619848373811589,
+      "samples_per_second": 25970920.26462462,
+      "timing_blocks": 6,
+      "runs_per_block": 1000
+    },
+    {
+      "batch_size": 1000,
+      "batches": 1,
+      "last_batch_size": 1000,
+      "samples_processed": 1000,
+      "outputs_close": true,
+      "max_abs_error": 0.0,
+      "operator_calls": {
+        "aten::linear": 2,
+        "aten::addmm": 2,
+        "aten::relu": 1,
+        "aten::slice": 1,
+        "aten::cat": 1
+      },
+      "median_total_ms": 0.013007229004870169,
+      "iqr_total_ms": 4.96362335979942e-05,
+      "samples_per_second": 76880325.51941538,
+      "timing_blocks": 16,
+      "runs_per_block": 1000
+    }
+  ]
+}

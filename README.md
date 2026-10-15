@@ -1,6 +1,6 @@
 # CMU 15-779 代码实验
 
-CMU 15-779 学习记录中的配套代码。当前练习在 CPU 上运行，包含自动求导、线性回归、小型 ReLU 网络、DataLoader、参数保存、批量推理与绝对值网络。
+CMU 15-779 学习记录中的配套代码。当前练习在 CPU 上运行，包含自动求导、线性回归、小型 ReLU 网络、DataLoader、参数保存、批量推理、绝对值网络与算子性能分析。
 
 ## 环境
 
@@ -23,6 +23,7 @@ python3.11 -m venv .venv
 | [02：nn.Linear、张量形状与 ReLU](https://liangqianxing.github.io/posts/cmu-15-779-pytorch-linear-module-relu/) | `04` 至 `10` | 带偏置回归、模型封装、非线性拟合 |
 | [03：DataLoader、模型保存与批量推理](https://liangqianxing.github.io/posts/cmu-15-779-pytorch-dataloader-checkpoints-batching/) | `11` 至 `16` | 分批训练、参数恢复、推理计时和矩阵乘法 |
 | [04：多输出线性层、ReLU 与绝对值网络](https://liangqianxing.github.io/posts/cmu-15-779-pytorch-linear-relu-absolute-value/) | `16` 至 `19` | Linear 参数对照、多输出、逐层计算和绝对值拟合 |
+| [05：Profiler、算子调用与批量推理](https://liangqianxing.github.io/posts/cmu-15-779-profiler-operator-batching/) | `22` 至 `24` | 前向计算分析、调用次数与固定工作量的 batch size 扫描 |
 
 各脚本是逐步练习的独立版本，可以按编号运行。
 
@@ -46,6 +47,9 @@ python3.11 -m venv .venv
 .venv/bin/python 17_multi_output.py
 .venv/bin/python 18_relu_steps.py
 .venv/bin/python 19_learn_abs.py
+.venv/bin/python 22_profile_forward.py
+.venv/bin/python 23_profile_batching.py
+.venv/bin/python 24_batch_size_sweep.py --output results/24_batch_size_sweep-rerun.json
 ```
 
 ## 复现说明
@@ -60,5 +64,7 @@ python3.11 -m venv .venv
 - `16` 至 `18` 手动给定参数，不训练模型，也不依赖参数文件。`16_matmul.py` 的基础矩阵乘法见记录 03；追加的 `nn.Linear` 参数对照见记录 04。
 - `18_relu_steps.py` 保留使用 ReLU 的版本，手动构造绝对值函数。记录 04 中跳过 ReLU 得到全零的结果，是针对这组固定参数额外执行的对照。
 - `19_learn_abs.py` 使用随机种子 `0`、21 个训练点和 SGD（学习率 `0.05`），训练 3000 步。训练集均方误差约为 `0.00005678`；检查输入 `[-0.8, 0, 0.8]` 同样包含在训练集中，不能作为独立测试集评估。
+
+- `22` 至 `24` 是对照 ML Systems 基础的个人配套实验，不是 CMU 官方作业。`24` 固定一个 CPU 线程，将完整处理全部输入样本作为计时单位；原始测量保存在 `results/24_batch_size_sweep.json`，复跑时用 `--output` 另存。
 
 [课程学习专题](https://liangqianxing.github.io/learning/cmu-15-779/)提供学习资料与上述记录的入口。
