@@ -1,6 +1,6 @@
 # CMU 15-779 代码实验
 
-CMU 15-779 学习记录中的配套代码。当前练习在 CPU 上运行，包含自动求导、线性回归、小型 ReLU 网络、DataLoader、参数保存与批量推理。
+CMU 15-779 学习记录中的配套代码。当前练习在 CPU 上运行，包含自动求导、线性回归、小型 ReLU 网络、DataLoader、参数保存、批量推理与绝对值网络。
 
 ## 环境
 
@@ -22,6 +22,7 @@ python3.11 -m venv .venv
 | [01：自动求导与线性回归](https://liangqianxing.github.io/posts/cmu-15-779-pytorch-autograd-linear-regression/) | `01` 至 `03` | 手动梯度下降、SGD、无偏置线性回归 |
 | [02：nn.Linear、张量形状与 ReLU](https://liangqianxing.github.io/posts/cmu-15-779-pytorch-linear-module-relu/) | `04` 至 `10` | 带偏置回归、模型封装、非线性拟合 |
 | [03：DataLoader、模型保存与批量推理](https://liangqianxing.github.io/posts/cmu-15-779-pytorch-dataloader-checkpoints-batching/) | `11` 至 `16` | 分批训练、参数恢复、推理计时和矩阵乘法 |
+| [04：多输出线性层、ReLU 与绝对值网络](https://liangqianxing.github.io/posts/cmu-15-779-pytorch-linear-relu-absolute-value/) | `16` 至 `19` | Linear 参数对照、多输出、逐层计算和绝对值拟合 |
 
 各脚本是逐步练习的独立版本，可以按编号运行。
 
@@ -42,6 +43,9 @@ python3.11 -m venv .venv
 .venv/bin/python 14_predict.py
 .venv/bin/python 15_batch_benchmark.py
 .venv/bin/python 16_matmul.py
+.venv/bin/python 17_multi_output.py
+.venv/bin/python 18_relu_steps.py
+.venv/bin/python 19_learn_abs.py
 ```
 
 ## 复现说明
@@ -53,6 +57,8 @@ python3.11 -m venv .venv
 - 仓库包含本次练习保存的 `square_model.pth`，只有 25 个模型参数。`13_save_load.py` 会重新训练并覆盖当前目录中的这个文件；`14`、`15` 可以直接读取附带的参数文件。
 - 请在仓库目录运行涉及参数保存和加载的脚本，其路径按当前工作目录解析。
 - `15_batch_benchmark.py` 保留最后一次使用的 1 个样本。将 `torch.linspace(-1.0, 1.0, 1)` 的最后一个参数改为 `1000`，可比较 1000 个样本的逐个预测与整批预测。计时包含 Python 循环、切片及拼接开销，倍数随运行环境波动。
-- `16_matmul.py` 手动给定参数，不训练模型，也不依赖参数文件。
+- `16` 至 `18` 手动给定参数，不训练模型，也不依赖参数文件。`16_matmul.py` 的基础矩阵乘法见记录 03；追加的 `nn.Linear` 参数对照见记录 04。
+- `18_relu_steps.py` 保留使用 ReLU 的版本，手动构造绝对值函数。记录 04 中跳过 ReLU 得到全零的结果，是针对这组固定参数额外执行的对照。
+- `19_learn_abs.py` 使用随机种子 `0`、21 个训练点和 SGD（学习率 `0.05`），训练 3000 步。训练集均方误差约为 `0.00005678`；检查输入 `[-0.8, 0, 0.8]` 同样包含在训练集中，不能作为独立测试集评估。
 
 [课程学习专题](https://liangqianxing.github.io/learning/cmu-15-779/)提供学习资料与上述记录的入口。
