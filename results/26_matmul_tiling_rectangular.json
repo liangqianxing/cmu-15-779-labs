@@ -1,0 +1,1002 @@
+{
+  "recorded_at": "2026-10-16T18:16:06.948024+08:00",
+  "script_sha256": "e8ced5c6f51dd0f90539bb4ede484ce60c76a49116e55ccf22c47fd302047e3d",
+  "cuda_source_sha256": "f35a95ffbc378a401df6119c12738ee0eea2717c38f69f7a336044d7c2ee8a41",
+  "execution": "CPU algorithm model; no CUDA compilation, execution, or timing",
+  "counting_scope": "Logical scalar A/B reads; excludes C stores, caches, coalescing, DRAM transactions",
+  "cuda_execution_verified": false,
+  "environment": {
+    "architecture": "arm64",
+    "python": "3.11.15",
+    "torch": "2.14.1",
+    "cuda_available": false,
+    "torch_cuda_build": null,
+    "mps_available": true
+  },
+  "example": {
+    "shape": {
+      "m": 3,
+      "k": 5,
+      "n": 7
+    },
+    "tile": 4,
+    "output_blocks": 2,
+    "launched_threads": 32,
+    "useful_multiply_adds": 105,
+    "naive": {
+      "a_loads": 105,
+      "b_loads": 105,
+      "output_stores": 21,
+      "multiply_adds": 105,
+      "global_input_loads": 210
+    },
+    "tiled": {
+      "a_loads": 30,
+      "b_loads": 35,
+      "output_stores": 21,
+      "multiply_adds": 256,
+      "zero_fills": 63,
+      "block_barrier_phases": 8,
+      "global_input_loads": 65
+    },
+    "logical_load_reduction_factor": 3.230769230769231,
+    "matches_torch_exactly": true,
+    "every_output_written_once": true,
+    "counts_match_formulas": true,
+    "output_preview": [
+      [
+        0.34375,
+        0.75,
+        0.125,
+        -0.5,
+        0.59375,
+        0.65625,
+        0.03125
+      ],
+      [
+        0.5,
+        -0.03125,
+        0.125,
+        0.28125,
+        0.4375,
+        -0.4375,
+        -0.28125
+      ],
+      [
+        -1.78125,
+        0.40625,
+        0.53125,
+        0.65625,
+        -0.9375,
+        0.90625,
+        1.03125
+      ]
+    ]
+  },
+  "tile_sweep": [
+    {
+      "shape": {
+        "m": 8,
+        "k": 8,
+        "n": 8
+      },
+      "tile": 1,
+      "output_blocks": 64,
+      "launched_threads": 64,
+      "useful_multiply_adds": 512,
+      "naive": {
+        "a_loads": 512,
+        "b_loads": 512,
+        "output_stores": 64,
+        "multiply_adds": 512,
+        "global_input_loads": 1024
+      },
+      "tiled": {
+        "a_loads": 512,
+        "b_loads": 512,
+        "output_stores": 64,
+        "multiply_adds": 512,
+        "zero_fills": 0,
+        "block_barrier_phases": 1024,
+        "global_input_loads": 1024
+      },
+      "logical_load_reduction_factor": 1.0,
+      "matches_torch_exactly": true,
+      "every_output_written_once": true,
+      "counts_match_formulas": true,
+      "output_preview": [
+        [
+          0.25,
+          0.3125,
+          -0.3125,
+          0.78125,
+          0.5,
+          -0.125,
+          0.625,
+          0.0
+        ],
+        [
+          0.71875,
+          -1.1875,
+          -1.03125,
+          -1.90625,
+          0.3125,
+          0.46875,
+          -0.75,
+          1.125
+        ],
+        [
+          -0.03125,
+          -0.25,
+          -0.125,
+          0.6875,
+          0.125,
+          0.25,
+          0.71875,
+          -0.1875
+        ],
+        [
+          -0.375,
+          0.6875,
+          0.375,
+          -2.0,
+          -1.28125,
+          -1.59375,
+          0.15625,
+          0.53125
+        ],
+        [
+          1.3125,
+          0.40625,
+          0.875,
+          1.0,
+          -0.25,
+          0.21875,
+          0.0,
+          -1.59375
+        ],
+        [
+          0.15625,
+          0.125,
+          -0.25,
+          0.75,
+          0.375,
+          0.0,
+          0.65625,
+          -0.0625
+        ],
+        [
+          -1.40625,
+          0.65625,
+          0.65625,
+          -0.71875,
+          1.0,
+          1.0,
+          -0.71875,
+          0.65625
+        ],
+        [
+          -0.125,
+          -0.4375,
+          -0.0625,
+          0.65625,
+          0.0,
+          0.375,
+          0.75,
+          -0.25
+        ]
+      ]
+    },
+    {
+      "shape": {
+        "m": 8,
+        "k": 8,
+        "n": 8
+      },
+      "tile": 2,
+      "output_blocks": 16,
+      "launched_threads": 64,
+      "useful_multiply_adds": 512,
+      "naive": {
+        "a_loads": 512,
+        "b_loads": 512,
+        "output_stores": 64,
+        "multiply_adds": 512,
+        "global_input_loads": 1024
+      },
+      "tiled": {
+        "a_loads": 256,
+        "b_loads": 256,
+        "output_stores": 64,
+        "multiply_adds": 512,
+        "zero_fills": 0,
+        "block_barrier_phases": 128,
+        "global_input_loads": 512
+      },
+      "logical_load_reduction_factor": 2.0,
+      "matches_torch_exactly": true,
+      "every_output_written_once": true,
+      "counts_match_formulas": true,
+      "output_preview": [
+        [
+          0.25,
+          0.3125,
+          -0.3125,
+          0.78125,
+          0.5,
+          -0.125,
+          0.625,
+          0.0
+        ],
+        [
+          0.71875,
+          -1.1875,
+          -1.03125,
+          -1.90625,
+          0.3125,
+          0.46875,
+          -0.75,
+          1.125
+        ],
+        [
+          -0.03125,
+          -0.25,
+          -0.125,
+          0.6875,
+          0.125,
+          0.25,
+          0.71875,
+          -0.1875
+        ],
+        [
+          -0.375,
+          0.6875,
+          0.375,
+          -2.0,
+          -1.28125,
+          -1.59375,
+          0.15625,
+          0.53125
+        ],
+        [
+          1.3125,
+          0.40625,
+          0.875,
+          1.0,
+          -0.25,
+          0.21875,
+          0.0,
+          -1.59375
+        ],
+        [
+          0.15625,
+          0.125,
+          -0.25,
+          0.75,
+          0.375,
+          0.0,
+          0.65625,
+          -0.0625
+        ],
+        [
+          -1.40625,
+          0.65625,
+          0.65625,
+          -0.71875,
+          1.0,
+          1.0,
+          -0.71875,
+          0.65625
+        ],
+        [
+          -0.125,
+          -0.4375,
+          -0.0625,
+          0.65625,
+          0.0,
+          0.375,
+          0.75,
+          -0.25
+        ]
+      ]
+    },
+    {
+      "shape": {
+        "m": 8,
+        "k": 8,
+        "n": 8
+      },
+      "tile": 4,
+      "output_blocks": 4,
+      "launched_threads": 64,
+      "useful_multiply_adds": 512,
+      "naive": {
+        "a_loads": 512,
+        "b_loads": 512,
+        "output_stores": 64,
+        "multiply_adds": 512,
+        "global_input_loads": 1024
+      },
+      "tiled": {
+        "a_loads": 128,
+        "b_loads": 128,
+        "output_stores": 64,
+        "multiply_adds": 512,
+        "zero_fills": 0,
+        "block_barrier_phases": 16,
+        "global_input_loads": 256
+      },
+      "logical_load_reduction_factor": 4.0,
+      "matches_torch_exactly": true,
+      "every_output_written_once": true,
+      "counts_match_formulas": true,
+      "output_preview": [
+        [
+          0.25,
+          0.3125,
+          -0.3125,
+          0.78125,
+          0.5,
+          -0.125,
+          0.625,
+          0.0
+        ],
+        [
+          0.71875,
+          -1.1875,
+          -1.03125,
+          -1.90625,
+          0.3125,
+          0.46875,
+          -0.75,
+          1.125
+        ],
+        [
+          -0.03125,
+          -0.25,
+          -0.125,
+          0.6875,
+          0.125,
+          0.25,
+          0.71875,
+          -0.1875
+        ],
+        [
+          -0.375,
+          0.6875,
+          0.375,
+          -2.0,
+          -1.28125,
+          -1.59375,
+          0.15625,
+          0.53125
+        ],
+        [
+          1.3125,
+          0.40625,
+          0.875,
+          1.0,
+          -0.25,
+          0.21875,
+          0.0,
+          -1.59375
+        ],
+        [
+          0.15625,
+          0.125,
+          -0.25,
+          0.75,
+          0.375,
+          0.0,
+          0.65625,
+          -0.0625
+        ],
+        [
+          -1.40625,
+          0.65625,
+          0.65625,
+          -0.71875,
+          1.0,
+          1.0,
+          -0.71875,
+          0.65625
+        ],
+        [
+          -0.125,
+          -0.4375,
+          -0.0625,
+          0.65625,
+          0.0,
+          0.375,
+          0.75,
+          -0.25
+        ]
+      ]
+    },
+    {
+      "shape": {
+        "m": 8,
+        "k": 8,
+        "n": 8
+      },
+      "tile": 8,
+      "output_blocks": 1,
+      "launched_threads": 64,
+      "useful_multiply_adds": 512,
+      "naive": {
+        "a_loads": 512,
+        "b_loads": 512,
+        "output_stores": 64,
+        "multiply_adds": 512,
+        "global_input_loads": 1024
+      },
+      "tiled": {
+        "a_loads": 64,
+        "b_loads": 64,
+        "output_stores": 64,
+        "multiply_adds": 512,
+        "zero_fills": 0,
+        "block_barrier_phases": 2,
+        "global_input_loads": 128
+      },
+      "logical_load_reduction_factor": 8.0,
+      "matches_torch_exactly": true,
+      "every_output_written_once": true,
+      "counts_match_formulas": true,
+      "output_preview": [
+        [
+          0.25,
+          0.3125,
+          -0.3125,
+          0.78125,
+          0.5,
+          -0.125,
+          0.625,
+          0.0
+        ],
+        [
+          0.71875,
+          -1.1875,
+          -1.03125,
+          -1.90625,
+          0.3125,
+          0.46875,
+          -0.75,
+          1.125
+        ],
+        [
+          -0.03125,
+          -0.25,
+          -0.125,
+          0.6875,
+          0.125,
+          0.25,
+          0.71875,
+          -0.1875
+        ],
+        [
+          -0.375,
+          0.6875,
+          0.375,
+          -2.0,
+          -1.28125,
+          -1.59375,
+          0.15625,
+          0.53125
+        ],
+        [
+          1.3125,
+          0.40625,
+          0.875,
+          1.0,
+          -0.25,
+          0.21875,
+          0.0,
+          -1.59375
+        ],
+        [
+          0.15625,
+          0.125,
+          -0.25,
+          0.75,
+          0.375,
+          0.0,
+          0.65625,
+          -0.0625
+        ],
+        [
+          -1.40625,
+          0.65625,
+          0.65625,
+          -0.71875,
+          1.0,
+          1.0,
+          -0.71875,
+          0.65625
+        ],
+        [
+          -0.125,
+          -0.4375,
+          -0.0625,
+          0.65625,
+          0.0,
+          0.375,
+          0.75,
+          -0.25
+        ]
+      ]
+    }
+  ],
+  "edge_cases": [
+    {
+      "shape": {
+        "m": 0,
+        "k": 5,
+        "n": 3
+      },
+      "tile": 4,
+      "output_blocks": 0,
+      "launched_threads": 0,
+      "useful_multiply_adds": 0,
+      "naive": {
+        "a_loads": 0,
+        "b_loads": 0,
+        "output_stores": 0,
+        "multiply_adds": 0,
+        "global_input_loads": 0
+      },
+      "tiled": {
+        "a_loads": 0,
+        "b_loads": 0,
+        "output_stores": 0,
+        "multiply_adds": 0,
+        "zero_fills": 0,
+        "block_barrier_phases": 0,
+        "global_input_loads": 0
+      },
+      "logical_load_reduction_factor": null,
+      "matches_torch_exactly": true,
+      "every_output_written_once": true,
+      "counts_match_formulas": true,
+      "output_preview": []
+    },
+    {
+      "shape": {
+        "m": 3,
+        "k": 5,
+        "n": 0
+      },
+      "tile": 4,
+      "output_blocks": 0,
+      "launched_threads": 0,
+      "useful_multiply_adds": 0,
+      "naive": {
+        "a_loads": 0,
+        "b_loads": 0,
+        "output_stores": 0,
+        "multiply_adds": 0,
+        "global_input_loads": 0
+      },
+      "tiled": {
+        "a_loads": 0,
+        "b_loads": 0,
+        "output_stores": 0,
+        "multiply_adds": 0,
+        "zero_fills": 0,
+        "block_barrier_phases": 0,
+        "global_input_loads": 0
+      },
+      "logical_load_reduction_factor": null,
+      "matches_torch_exactly": true,
+      "every_output_written_once": true,
+      "counts_match_formulas": true,
+      "output_preview": [
+        [],
+        [],
+        []
+      ]
+    },
+    {
+      "shape": {
+        "m": 3,
+        "k": 0,
+        "n": 5
+      },
+      "tile": 4,
+      "output_blocks": 2,
+      "launched_threads": 32,
+      "useful_multiply_adds": 0,
+      "naive": {
+        "a_loads": 0,
+        "b_loads": 0,
+        "output_stores": 15,
+        "multiply_adds": 0,
+        "global_input_loads": 0
+      },
+      "tiled": {
+        "a_loads": 0,
+        "b_loads": 0,
+        "output_stores": 15,
+        "multiply_adds": 0,
+        "zero_fills": 0,
+        "block_barrier_phases": 0,
+        "global_input_loads": 0
+      },
+      "logical_load_reduction_factor": null,
+      "matches_torch_exactly": true,
+      "every_output_written_once": true,
+      "counts_match_formulas": true,
+      "output_preview": [
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      ]
+    },
+    {
+      "shape": {
+        "m": 1,
+        "k": 1,
+        "n": 1
+      },
+      "tile": 4,
+      "output_blocks": 1,
+      "launched_threads": 16,
+      "useful_multiply_adds": 1,
+      "naive": {
+        "a_loads": 1,
+        "b_loads": 1,
+        "output_stores": 1,
+        "multiply_adds": 1,
+        "global_input_loads": 2
+      },
+      "tiled": {
+        "a_loads": 1,
+        "b_loads": 1,
+        "output_stores": 1,
+        "multiply_adds": 64,
+        "zero_fills": 30,
+        "block_barrier_phases": 2,
+        "global_input_loads": 2
+      },
+      "logical_load_reduction_factor": 1.0,
+      "matches_torch_exactly": true,
+      "every_output_written_once": true,
+      "counts_match_formulas": true,
+      "output_preview": [
+        [
+          0.9375
+        ]
+      ]
+    },
+    {
+      "shape": {
+        "m": 4,
+        "k": 4,
+        "n": 4
+      },
+      "tile": 2,
+      "output_blocks": 4,
+      "launched_threads": 16,
+      "useful_multiply_adds": 64,
+      "naive": {
+        "a_loads": 64,
+        "b_loads": 64,
+        "output_stores": 16,
+        "multiply_adds": 64,
+        "global_input_loads": 128
+      },
+      "tiled": {
+        "a_loads": 32,
+        "b_loads": 32,
+        "output_stores": 16,
+        "multiply_adds": 64,
+        "zero_fills": 0,
+        "block_barrier_phases": 16,
+        "global_input_loads": 64
+      },
+      "logical_load_reduction_factor": 2.0,
+      "matches_torch_exactly": true,
+      "every_output_written_once": true,
+      "counts_match_formulas": true,
+      "output_preview": [
+        [
+          1.09375,
+          0.53125,
+          -0.03125,
+          0.78125
+        ],
+        [
+          0.21875,
+          0.15625,
+          0.09375,
+          0.03125
+        ],
+        [
+          -0.65625,
+          -0.21875,
+          0.21875,
+          -0.71875
+        ],
+        [
+          -0.71875,
+          -1.0,
+          -1.28125,
+          0.15625
+        ]
+      ]
+    },
+    {
+      "shape": {
+        "m": 3,
+        "k": 5,
+        "n": 7
+      },
+      "tile": 4,
+      "output_blocks": 2,
+      "launched_threads": 32,
+      "useful_multiply_adds": 105,
+      "naive": {
+        "a_loads": 105,
+        "b_loads": 105,
+        "output_stores": 21,
+        "multiply_adds": 105,
+        "global_input_loads": 210
+      },
+      "tiled": {
+        "a_loads": 30,
+        "b_loads": 35,
+        "output_stores": 21,
+        "multiply_adds": 256,
+        "zero_fills": 63,
+        "block_barrier_phases": 8,
+        "global_input_loads": 65
+      },
+      "logical_load_reduction_factor": 3.230769230769231,
+      "matches_torch_exactly": true,
+      "every_output_written_once": true,
+      "counts_match_formulas": true,
+      "output_preview": [
+        [
+          0.34375,
+          0.75,
+          0.125,
+          -0.5,
+          0.59375,
+          0.65625,
+          0.03125
+        ],
+        [
+          0.5,
+          -0.03125,
+          0.125,
+          0.28125,
+          0.4375,
+          -0.4375,
+          -0.28125
+        ],
+        [
+          -1.78125,
+          0.40625,
+          0.53125,
+          0.65625,
+          -0.9375,
+          0.90625,
+          1.03125
+        ]
+      ]
+    },
+    {
+      "shape": {
+        "m": 7,
+        "k": 3,
+        "n": 5
+      },
+      "tile": 2,
+      "output_blocks": 12,
+      "launched_threads": 48,
+      "useful_multiply_adds": 105,
+      "naive": {
+        "a_loads": 105,
+        "b_loads": 105,
+        "output_stores": 35,
+        "multiply_adds": 105,
+        "global_input_loads": 210
+      },
+      "tiled": {
+        "a_loads": 63,
+        "b_loads": 60,
+        "output_stores": 35,
+        "multiply_adds": 192,
+        "zero_fills": 69,
+        "block_barrier_phases": 48,
+        "global_input_loads": 123
+      },
+      "logical_load_reduction_factor": 1.7073170731707317,
+      "matches_torch_exactly": true,
+      "every_output_written_once": true,
+      "counts_match_formulas": true,
+      "output_preview": [
+        [
+          0.3125,
+          1.21875,
+          0.75,
+          0.28125,
+          -0.1875
+        ],
+        [
+          0.3125,
+          0.46875,
+          0.28125,
+          0.09375,
+          -0.09375
+        ],
+        [
+          0.3125,
+          -0.28125,
+          -0.1875,
+          -0.09375,
+          0.0
+        ],
+        [
+          0.3125,
+          -1.03125,
+          -0.65625,
+          -0.28125,
+          0.09375
+        ],
+        [
+          -1.71875,
+          -0.15625,
+          -0.3125,
+          -0.46875,
+          -0.625
+        ],
+        [
+          0.3125,
+          0.71875,
+          0.4375,
+          0.15625,
+          -0.125
+        ],
+        [
+          0.3125,
+          -0.03125,
+          -0.03125,
+          -0.03125,
+          -0.03125
+        ]
+      ]
+    },
+    {
+      "shape": {
+        "m": 17,
+        "k": 9,
+        "n": 13
+      },
+      "tile": 8,
+      "output_blocks": 6,
+      "launched_threads": 384,
+      "useful_multiply_adds": 1989,
+      "naive": {
+        "a_loads": 1989,
+        "b_loads": 1989,
+        "output_stores": 221,
+        "multiply_adds": 1989,
+        "global_input_loads": 3978
+      },
+      "tiled": {
+        "a_loads": 306,
+        "b_loads": 351,
+        "output_stores": 221,
+        "multiply_adds": 6144,
+        "zero_fills": 879,
+        "block_barrier_phases": 24,
+        "global_input_loads": 657
+      },
+      "logical_load_reduction_factor": 6.054794520547945,
+      "matches_torch_exactly": true,
+      "every_output_written_once": true,
+      "counts_match_formulas": true,
+      "output_preview": [
+        [
+          1.03125,
+          0.8125,
+          0.25,
+          0.375,
+          -0.1875,
+          0.28125,
+          -0.96875,
+          -0.15625
+        ],
+        [
+          -1.46875,
+          0.1875,
+          0.125,
+          2.125,
+          2.0625,
+          -0.0625,
+          0.5625,
+          -1.21875
+        ],
+        [
+          0.09375,
+          -0.84375,
+          -0.40625,
+          -1.0,
+          -0.5625,
+          -0.8125,
+          1.6875,
+          1.78125
+        ],
+        [
+          0.84375,
+          0.5625,
+          0.28125,
+          0.34375,
+          0.0625,
+          0.46875,
+          -0.84375,
+          -0.09375
+        ],
+        [
+          -2.0625,
+          -0.875,
+          -1.0625,
+          0.46875,
+          0.28125,
+          2.15625,
+          2.3125,
+          0.0625
+        ],
+        [
+          0.71875,
+          -0.6875,
+          -0.375,
+          -1.4375,
+          -1.125,
+          -1.84375,
+          0.1875,
+          -0.1875
+        ],
+        [
+          0.65625,
+          0.3125,
+          0.3125,
+          0.3125,
+          0.3125,
+          0.65625,
+          -0.71875,
+          -0.03125
+        ],
+        [
+          -1.84375,
+          -1.125,
+          -1.4375,
+          -0.375,
+          -0.6875,
+          0.71875,
+          0.40625,
+          2.15625
+        ]
+      ]
+    }
+  ]
+}

@@ -1,0 +1,305 @@
+{
+  "recorded_at": "2026-10-16T18:43:22.170131+08:00",
+  "script_sha256": "ec82f757a6b20a0099b861332e02e01e291fbcb38bb365ff019bcf5afc42662b",
+  "execution": "CPU single-head forward-only algorithm; not a FlashAttention GPU kernel",
+  "gpu_status": "skipped_by_user_request",
+  "cuda_execution_verified": false,
+  "environment": {
+    "python": "3.11.15",
+    "architecture": "arm64",
+    "torch": "2.14.1",
+    "device": "cpu",
+    "torch_threads": 1
+  },
+  "example": {
+    "n": 17,
+    "d": 8,
+    "value_dim": 4,
+    "dtype": "torch.float32",
+    "causal": true,
+    "query_block": 8,
+    "key_block": 5,
+    "output_shape": [
+      17,
+      4
+    ],
+    "reference_backend": "PyTorch SDPA MATH on CPU",
+    "max_abs_error_dense_vs_sdpa": 3.5762786865234375e-07,
+    "max_abs_error_tiled_vs_sdpa": 2.980232238769531e-07,
+    "outputs_close": true,
+    "attention_rows_sum_to_one": true,
+    "score_storage": {
+      "dense_one_score_matrix_elements": 289,
+      "dense_one_score_matrix_bytes": 1156,
+      "largest_score_tile_elements": 40,
+      "score_elements_computed": 289,
+      "tile_count": 12,
+      "materializes_full_score_matrix": false,
+      "largest_one_score_tile_bytes": 160,
+      "scope": "Individual score tensor sizes, NOT total live memory, allocator peak, or hardware traffic"
+    }
+  },
+  "edge_cases": [
+    {
+      "n": 1,
+      "d": 1,
+      "value_dim": 1,
+      "dtype": "torch.float32",
+      "causal": false,
+      "query_block": 8,
+      "key_block": 8,
+      "output_shape": [
+        1,
+        1
+      ],
+      "reference_backend": "PyTorch SDPA MATH on CPU",
+      "max_abs_error_dense_vs_sdpa": 0.0,
+      "max_abs_error_tiled_vs_sdpa": 0.0,
+      "outputs_close": true,
+      "attention_rows_sum_to_one": true,
+      "score_storage": {
+        "dense_one_score_matrix_elements": 1,
+        "dense_one_score_matrix_bytes": 4,
+        "largest_score_tile_elements": 1,
+        "score_elements_computed": 1,
+        "tile_count": 1,
+        "materializes_full_score_matrix": true,
+        "largest_one_score_tile_bytes": 4,
+        "scope": "Individual score tensor sizes, NOT total live memory, allocator peak, or hardware traffic"
+      }
+    },
+    {
+      "n": 1,
+      "d": 1,
+      "value_dim": 1,
+      "dtype": "torch.float32",
+      "causal": true,
+      "query_block": 8,
+      "key_block": 8,
+      "output_shape": [
+        1,
+        1
+      ],
+      "reference_backend": "PyTorch SDPA MATH on CPU",
+      "max_abs_error_dense_vs_sdpa": 0.0,
+      "max_abs_error_tiled_vs_sdpa": 0.0,
+      "outputs_close": true,
+      "attention_rows_sum_to_one": true,
+      "score_storage": {
+        "dense_one_score_matrix_elements": 1,
+        "dense_one_score_matrix_bytes": 4,
+        "largest_score_tile_elements": 1,
+        "score_elements_computed": 1,
+        "tile_count": 1,
+        "materializes_full_score_matrix": true,
+        "largest_one_score_tile_bytes": 4,
+        "scope": "Individual score tensor sizes, NOT total live memory, allocator peak, or hardware traffic"
+      }
+    },
+    {
+      "n": 7,
+      "d": 3,
+      "value_dim": 5,
+      "dtype": "torch.float32",
+      "causal": false,
+      "query_block": 3,
+      "key_block": 4,
+      "output_shape": [
+        7,
+        5
+      ],
+      "reference_backend": "PyTorch SDPA MATH on CPU",
+      "max_abs_error_dense_vs_sdpa": 8.940696716308594e-08,
+      "max_abs_error_tiled_vs_sdpa": 8.940696716308594e-08,
+      "outputs_close": true,
+      "attention_rows_sum_to_one": true,
+      "score_storage": {
+        "dense_one_score_matrix_elements": 49,
+        "dense_one_score_matrix_bytes": 196,
+        "largest_score_tile_elements": 12,
+        "score_elements_computed": 49,
+        "tile_count": 6,
+        "materializes_full_score_matrix": false,
+        "largest_one_score_tile_bytes": 48,
+        "scope": "Individual score tensor sizes, NOT total live memory, allocator peak, or hardware traffic"
+      }
+    },
+    {
+      "n": 7,
+      "d": 3,
+      "value_dim": 5,
+      "dtype": "torch.float32",
+      "causal": true,
+      "query_block": 3,
+      "key_block": 4,
+      "output_shape": [
+        7,
+        5
+      ],
+      "reference_backend": "PyTorch SDPA MATH on CPU",
+      "max_abs_error_dense_vs_sdpa": 1.7881393432617188e-07,
+      "max_abs_error_tiled_vs_sdpa": 1.4901161193847656e-07,
+      "outputs_close": true,
+      "attention_rows_sum_to_one": true,
+      "score_storage": {
+        "dense_one_score_matrix_elements": 49,
+        "dense_one_score_matrix_bytes": 196,
+        "largest_score_tile_elements": 12,
+        "score_elements_computed": 49,
+        "tile_count": 6,
+        "materializes_full_score_matrix": false,
+        "largest_one_score_tile_bytes": 48,
+        "scope": "Individual score tensor sizes, NOT total live memory, allocator peak, or hardware traffic"
+      }
+    },
+    {
+      "n": 17,
+      "d": 8,
+      "value_dim": 4,
+      "dtype": "torch.float32",
+      "causal": false,
+      "query_block": 8,
+      "key_block": 5,
+      "output_shape": [
+        17,
+        4
+      ],
+      "reference_backend": "PyTorch SDPA MATH on CPU",
+      "max_abs_error_dense_vs_sdpa": 3.8743019104003906e-07,
+      "max_abs_error_tiled_vs_sdpa": 2.682209014892578e-07,
+      "outputs_close": true,
+      "attention_rows_sum_to_one": true,
+      "score_storage": {
+        "dense_one_score_matrix_elements": 289,
+        "dense_one_score_matrix_bytes": 1156,
+        "largest_score_tile_elements": 40,
+        "score_elements_computed": 289,
+        "tile_count": 12,
+        "materializes_full_score_matrix": false,
+        "largest_one_score_tile_bytes": 160,
+        "scope": "Individual score tensor sizes, NOT total live memory, allocator peak, or hardware traffic"
+      }
+    },
+    {
+      "n": 17,
+      "d": 8,
+      "value_dim": 4,
+      "dtype": "torch.float32",
+      "causal": true,
+      "query_block": 8,
+      "key_block": 5,
+      "output_shape": [
+        17,
+        4
+      ],
+      "reference_backend": "PyTorch SDPA MATH on CPU",
+      "max_abs_error_dense_vs_sdpa": 3.5762786865234375e-07,
+      "max_abs_error_tiled_vs_sdpa": 2.980232238769531e-07,
+      "outputs_close": true,
+      "attention_rows_sum_to_one": true,
+      "score_storage": {
+        "dense_one_score_matrix_elements": 289,
+        "dense_one_score_matrix_bytes": 1156,
+        "largest_score_tile_elements": 40,
+        "score_elements_computed": 289,
+        "tile_count": 12,
+        "materializes_full_score_matrix": false,
+        "largest_one_score_tile_bytes": 160,
+        "scope": "Individual score tensor sizes, NOT total live memory, allocator peak, or hardware traffic"
+      }
+    }
+  ],
+  "sequence_sweep": [
+    {
+      "n": 16,
+      "d": 16,
+      "value_dim": 8,
+      "dtype": "torch.float32",
+      "causal": false,
+      "query_block": 16,
+      "key_block": 16,
+      "output_shape": [
+        16,
+        8
+      ],
+      "reference_backend": "PyTorch SDPA MATH on CPU",
+      "max_abs_error_dense_vs_sdpa": 0.0,
+      "max_abs_error_tiled_vs_sdpa": 2.384185791015625e-07,
+      "outputs_close": true,
+      "attention_rows_sum_to_one": true,
+      "score_storage": {
+        "dense_one_score_matrix_elements": 256,
+        "dense_one_score_matrix_bytes": 1024,
+        "largest_score_tile_elements": 256,
+        "score_elements_computed": 256,
+        "tile_count": 1,
+        "materializes_full_score_matrix": true,
+        "largest_one_score_tile_bytes": 1024,
+        "scope": "Individual score tensor sizes, NOT total live memory, allocator peak, or hardware traffic"
+      }
+    },
+    {
+      "n": 64,
+      "d": 16,
+      "value_dim": 8,
+      "dtype": "torch.float32",
+      "causal": false,
+      "query_block": 16,
+      "key_block": 16,
+      "output_shape": [
+        64,
+        8
+      ],
+      "reference_backend": "PyTorch SDPA MATH on CPU",
+      "max_abs_error_dense_vs_sdpa": 0.0,
+      "max_abs_error_tiled_vs_sdpa": 1.7881393432617188e-07,
+      "outputs_close": true,
+      "attention_rows_sum_to_one": true,
+      "score_storage": {
+        "dense_one_score_matrix_elements": 4096,
+        "dense_one_score_matrix_bytes": 16384,
+        "largest_score_tile_elements": 256,
+        "score_elements_computed": 4096,
+        "tile_count": 16,
+        "materializes_full_score_matrix": false,
+        "largest_one_score_tile_bytes": 1024,
+        "scope": "Individual score tensor sizes, NOT total live memory, allocator peak, or hardware traffic"
+      }
+    },
+    {
+      "n": 128,
+      "d": 16,
+      "value_dim": 8,
+      "dtype": "torch.float32",
+      "causal": false,
+      "query_block": 16,
+      "key_block": 16,
+      "output_shape": [
+        128,
+        8
+      ],
+      "reference_backend": "PyTorch SDPA MATH on CPU",
+      "max_abs_error_dense_vs_sdpa": 0.0,
+      "max_abs_error_tiled_vs_sdpa": 3.5762786865234375e-07,
+      "outputs_close": true,
+      "attention_rows_sum_to_one": true,
+      "score_storage": {
+        "dense_one_score_matrix_elements": 16384,
+        "dense_one_score_matrix_bytes": 65536,
+        "largest_score_tile_elements": 256,
+        "score_elements_computed": 16384,
+        "tile_count": 64,
+        "materializes_full_score_matrix": false,
+        "largest_one_score_tile_bytes": 1024,
+        "scope": "Individual score tensor sizes, NOT total live memory, allocator peak, or hardware traffic"
+      }
+    }
+  ],
+  "limitations": [
+    "no timing",
+    "no training/backward/dropout",
+    "no GPU IO measurement",
+    "no padding mask or fully masked rows",
+    "not a full Transformer"
+  ]
+}

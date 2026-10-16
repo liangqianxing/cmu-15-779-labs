@@ -1,0 +1,12 @@
+test_cli_rejects_invalid_inputs_without_writing (test_matmul_tiling.MatmulTilingTests.test_cli_rejects_invalid_inputs_without_writing) ... ok
+test_exhaustive_small_shapes (test_matmul_tiling.MatmulTilingTests.test_exhaustive_small_shapes) ... ok
+test_invalid_inputs (test_matmul_tiling.MatmulTilingTests.test_invalid_inputs) ... ok
+test_partial_tiles (test_matmul_tiling.MatmulTilingTests.test_partial_tiles) ... ok
+test_random_inputs (test_matmul_tiling.MatmulTilingTests.test_random_inputs) ... ok
+test_square_counts (test_matmul_tiling.MatmulTilingTests.test_square_counts) ... ok
+test_zero_inner_dimension (test_matmul_tiling.MatmulTilingTests.test_zero_inner_dimension) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 2.179s
+
+OK

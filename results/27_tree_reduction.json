@@ -1,0 +1,284 @@
+{
+  "recorded_at": "2026-10-16T18:43:19.749557+08:00",
+  "script_sha256": "23a4de5f328d57584635a414740967a9c547a70d69c506e71d5e9d605997bc7d",
+  "environment": {
+    "python": "3.11.15",
+    "architecture": "arm64"
+  },
+  "execution": "Serial CPU simulation; dependency counts are not timings",
+  "gpu_status": "skipped_by_user_request",
+  "cuda_execution_verified": false,
+  "example": {
+    "n": 257,
+    "block_size": 32,
+    "sum": -3.75,
+    "serial_additions": 256,
+    "serial_dependency_depth": 256,
+    "tree": {
+      "sum": -3.75,
+      "additions": 256,
+      "dependency_depth": 9,
+      "levels": []
+    },
+    "staged": {
+      "sum": -3.75,
+      "additions": 256,
+      "logical_stages": 2,
+      "rounds": [
+        {
+          "input_elements": 257,
+          "output_partials": 9,
+          "max_block_dependency_depth": 5,
+          "partial_preview": [
+            -3.75,
+            -2.75,
+            -1.75,
+            -0.75,
+            0.25,
+            1.25,
+            2.25,
+            3.25,
+            -1.75
+          ]
+        },
+        {
+          "input_elements": 9,
+          "output_partials": 1,
+          "max_block_dependency_depth": 4,
+          "partial_preview": [
+            -3.75
+          ]
+        }
+      ]
+    },
+    "fixture_outputs_exact": true
+  },
+  "lecture_example": {
+    "sum": 25,
+    "additions": 7,
+    "dependency_depth": 3,
+    "levels": [
+      [
+        3,
+        1,
+        7,
+        0,
+        4,
+        1,
+        6,
+        3
+      ],
+      [
+        4,
+        7,
+        5,
+        9
+      ],
+      [
+        11,
+        14
+      ],
+      [
+        25
+      ]
+    ]
+  },
+  "edge_cases": [
+    {
+      "n": 0,
+      "block_size": 4,
+      "sum": 0.0,
+      "serial_additions": 0,
+      "serial_dependency_depth": 0,
+      "tree": {
+        "sum": 0.0,
+        "additions": 0,
+        "dependency_depth": 0,
+        "levels": []
+      },
+      "staged": {
+        "sum": 0.0,
+        "additions": 0,
+        "logical_stages": 0,
+        "rounds": []
+      },
+      "fixture_outputs_exact": true
+    },
+    {
+      "n": 1,
+      "block_size": 4,
+      "sum": -2.0,
+      "serial_additions": 0,
+      "serial_dependency_depth": 0,
+      "tree": {
+        "sum": -2.0,
+        "additions": 0,
+        "dependency_depth": 0,
+        "levels": []
+      },
+      "staged": {
+        "sum": -2.0,
+        "additions": 0,
+        "logical_stages": 0,
+        "rounds": []
+      },
+      "fixture_outputs_exact": true
+    },
+    {
+      "n": 3,
+      "block_size": 2,
+      "sum": -5.25,
+      "serial_additions": 2,
+      "serial_dependency_depth": 2,
+      "tree": {
+        "sum": -5.25,
+        "additions": 2,
+        "dependency_depth": 2,
+        "levels": []
+      },
+      "staged": {
+        "sum": -5.25,
+        "additions": 2,
+        "logical_stages": 2,
+        "rounds": [
+          {
+            "input_elements": 3,
+            "output_partials": 2,
+            "max_block_dependency_depth": 1,
+            "partial_preview": [
+              -3.75,
+              -1.5
+            ]
+          },
+          {
+            "input_elements": 2,
+            "output_partials": 1,
+            "max_block_dependency_depth": 1,
+            "partial_preview": [
+              -5.25
+            ]
+          }
+        ]
+      },
+      "fixture_outputs_exact": true
+    },
+    {
+      "n": 8,
+      "block_size": 4,
+      "sum": -9.0,
+      "serial_additions": 7,
+      "serial_dependency_depth": 7,
+      "tree": {
+        "sum": -9.0,
+        "additions": 7,
+        "dependency_depth": 3,
+        "levels": []
+      },
+      "staged": {
+        "sum": -9.0,
+        "additions": 7,
+        "logical_stages": 2,
+        "rounds": [
+          {
+            "input_elements": 8,
+            "output_partials": 2,
+            "max_block_dependency_depth": 2,
+            "partial_preview": [
+              -6.5,
+              -2.5
+            ]
+          },
+          {
+            "input_elements": 2,
+            "output_partials": 1,
+            "max_block_dependency_depth": 1,
+            "partial_preview": [
+              -9.0
+            ]
+          }
+        ]
+      },
+      "fixture_outputs_exact": true
+    },
+    {
+      "n": 9,
+      "block_size": 4,
+      "sum": -9.0,
+      "serial_additions": 8,
+      "serial_dependency_depth": 8,
+      "tree": {
+        "sum": -9.0,
+        "additions": 8,
+        "dependency_depth": 4,
+        "levels": []
+      },
+      "staged": {
+        "sum": -9.0,
+        "additions": 8,
+        "logical_stages": 2,
+        "rounds": [
+          {
+            "input_elements": 9,
+            "output_partials": 3,
+            "max_block_dependency_depth": 2,
+            "partial_preview": [
+              -6.5,
+              -2.5,
+              0.0
+            ]
+          },
+          {
+            "input_elements": 3,
+            "output_partials": 1,
+            "max_block_dependency_depth": 2,
+            "partial_preview": [
+              -9.0
+            ]
+          }
+        ]
+      },
+      "fixture_outputs_exact": true
+    },
+    {
+      "n": 17,
+      "block_size": 32,
+      "sum": 0.0,
+      "serial_additions": 16,
+      "serial_dependency_depth": 16,
+      "tree": {
+        "sum": 0.0,
+        "additions": 16,
+        "dependency_depth": 5,
+        "levels": []
+      },
+      "staged": {
+        "sum": 0.0,
+        "additions": 16,
+        "logical_stages": 1,
+        "rounds": [
+          {
+            "input_elements": 17,
+            "output_partials": 1,
+            "max_block_dependency_depth": 5,
+            "partial_preview": [
+              0.0
+            ]
+          }
+        ]
+      },
+      "fixture_outputs_exact": true
+    }
+  ],
+  "floating_point_order_example": {
+    "input": [
+      1e+16,
+      1.0,
+      -1e+16,
+      1.0
+    ],
+    "serial": 1.0,
+    "tree": 0.0,
+    "math_fsum": 2.0,
+    "note": "Changing addition order can change floating-point results; exact fixtures are not a general guarantee"
+  }
+}

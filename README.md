@@ -1,6 +1,6 @@
 # CMU 15-779 代码实验
 
-CMU 15-779 学习记录中的配套代码。已运行的 CPU 练习包含自动求导、线性回归、小型 ReLU 网络、DataLoader、参数保存、批量推理、绝对值网络、算子性能分析和 CUDA 索引演示。`cuda/` 中的 CUDA C++ 源码尚未编译或执行。
+CMU 15-779 学习记录中的配套代码。已运行的 CPU 练习包含自动求导、线性回归、小型 ReLU 网络、DataLoader、参数保存、批量推理、绝对值网络、算子性能分析、CUDA 索引演示、矩阵分块、树形归约与在线 Softmax。`cuda/` 中的 CUDA C++ 源码尚未编译或执行。
 
 ## 环境
 
@@ -25,6 +25,9 @@ python3.11 -m venv .venv
 | [04：多输出线性层、ReLU 与绝对值网络](https://liangqianxing.github.io/posts/cmu-15-779-pytorch-linear-relu-absolute-value/) | `16` 至 `19` | Linear 参数对照、多输出、逐层计算和绝对值拟合 |
 | [05：Profiler、算子调用与批量推理](https://liangqianxing.github.io/posts/cmu-15-779-profiler-operator-batching/) | `22` 至 `24` | 前向计算分析、调用次数与固定工作量的 batch size 扫描 |
 | [06：CUDA 线程索引与边界检查](https://liangqianxing.github.io/posts/cmu-15-779-cuda-thread-indexing/) | `25` | CPU 索引演示、边界案例及未执行的 CUDA 源码 |
+
+| [07：矩阵分块、数据复用与树形归约](https://liangqianxing.github.io/posts/cmu-15-779-matmul-tiling-tree-reduction/) | `26`、`27` | CPU 逻辑读取、依赖深度与浮点求和顺序；CUDA 矩阵乘法未执行 |
+| [08：分块 Attention 与在线 Softmax](https://liangqianxing.github.io/posts/cmu-15-779-attention-online-softmax/) | `28` | 单头前向与 CPU SDPA MATH 对照，分数块大小；无 GPU 性能结论 |
 
 各脚本是逐步练习的独立版本，可以按编号运行。
 
@@ -71,3 +74,18 @@ python3.11 -m venv .venv
 - `25_cuda_indexing.py` 只在 CPU 上演示索引映射，原始结果保存在 `results/25_cuda_indexing.json` 和 `results/25_indexing_17_8.json`。它不测 GPU 性能，也不能证明 CUDA 设备内存访问安全。`cuda/25_vector_add.cu` 尚未编译执行，验证方法与当前限制见 [CUDA 运行说明](cuda/README.md)。
 
 [课程学习专题](https://liangqianxing.github.io/learning/cmu-15-779/)提供学习资料与上述记录的入口。
+
+## 记录 07–08 的复现
+
+脚本编号为个人配套练习编号，不对应官方作业。原始结果来自 2026-10-16；CPU 验证不能代替 CUDA 编译、运行或性能测量。分块算法计数不是实际设备流量；Attention 分数块大小不是总内存峰值。
+
+```bash
+.venv/bin/python 26_matmul_tiling.py --output results/26_matmul_tiling-rerun.json
+.venv/bin/python 26_matmul_tiling.py --m 3 --k 5 --n 7 --tile 4 --output results/26_matmul_tiling_rectangular-rerun.json
+.venv/bin/python 27_tree_reduction.py --output results/27_tree_reduction-rerun.json
+.venv/bin/python 28_attention_online_softmax.py --output results/28_attention_online_softmax-rerun.json
+.venv/bin/python 28_attention_online_softmax.py --n 17 --d 8 --value-dim 4 --query-block 8 --key-block 5 --causal --dtype float32 --output results/28_attention_causal_float32-rerun.json
+.venv/bin/python -m unittest discover -s tests -v
+```
+
+`tests/` 包含 21 项测试，覆盖矩阵乘法边界与计数、归约长度及浮点求和顺序、Attention 掩码、分块、数据类型、运行最大值修正和非法输入。Attention 只验证前向，不包含反向传播、dropout、padding mask 或全遮蔽行，不是完整 Transformer，也不是 FlashAttention GPU kernel。
