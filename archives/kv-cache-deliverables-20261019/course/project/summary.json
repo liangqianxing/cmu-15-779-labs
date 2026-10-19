@@ -1,0 +1,47 @@
+{
+  "storage_KiB": [
+    {
+      "scenario": "independent",
+      "static_None_KiB": 92.0,
+      "dynamic_None_KiB": 75.0,
+      "shared_4_KiB": 78.0,
+      "shared_32_KiB": 112.0,
+      "shared_64_KiB": 128.0
+    },
+    {
+      "scenario": "shared_3",
+      "static_None_KiB": 36.0,
+      "dynamic_None_KiB": 19.0,
+      "shared_4_KiB": 22.0,
+      "shared_32_KiB": 64.0,
+      "shared_64_KiB": 128.0
+    },
+    {
+      "scenario": "shared_31",
+      "static_None_KiB": 92.0,
+      "dynamic_None_KiB": 75.0,
+      "shared_4_KiB": 29.0,
+      "shared_32_KiB": 112.0,
+      "shared_64_KiB": 128.0
+    },
+    {
+      "scenario": "shared_32",
+      "static_None_KiB": 94.0,
+      "dynamic_None_KiB": 77.0,
+      "shared_4_KiB": 24.0,
+      "shared_32_KiB": 72.0,
+      "shared_64_KiB": 128.0
+    },
+    {
+      "scenario": "shared_63",
+      "static_None_KiB": 156.0,
+      "dynamic_None_KiB": 139.0,
+      "shared_4_KiB": 37.0,
+      "shared_32_KiB": 120.0,
+      "shared_64_KiB": 224.0
+    }
+  ],
+  "max_error": 0.0,
+  "configuration_rows": 210,
+  "timed_runs": 1470
+}

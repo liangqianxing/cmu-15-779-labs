@@ -1,0 +1,73 @@
+{
+  "recorded_at": "2026-10-19T09:52:06.899329+00:00",
+  "path": "output/video/kv-cache-presentation.mp4",
+  "duration_seconds": 540.14,
+  "synthetic_voice": "macOS Tingting",
+  "voice_tempo_multiplier": 1.0247962962962962,
+  "original_speech_seconds": 553.39,
+  "chapters": [
+    {
+      "title": "KV cache 的页大小与前缀共享",
+      "start_seconds": 0,
+      "planned_duration_seconds": 44.272213086611615
+    },
+    {
+      "title": "问题：增长中的 KV cache",
+      "start_seconds": 44.272213086611615,
+      "planned_duration_seconds": 43.130522777787824
+    },
+    {
+      "title": "相关工作与本项目的边界",
+      "start_seconds": 87.40273586439943,
+      "planned_duration_seconds": 48.16566978080559
+    },
+    {
+      "title": "实现：页表、引用计数与分支",
+      "start_seconds": 135.56840564520502,
+      "planned_duration_seconds": 42.64262093641013
+    },
+    {
+      "title": "实验设计：210 组配置",
+      "start_seconds": 178.21102658161516,
+      "planned_duration_seconds": 45.199226585229226
+    },
+    {
+      "title": "正确性先于性能",
+      "start_seconds": 223.41025316684437,
+      "planned_duration_seconds": 44.83817922260974
+    },
+    {
+      "title": "结果一：共享依赖完整前缀块",
+      "start_seconds": 268.24843238945414,
+      "planned_duration_seconds": 41.793671732412946
+    },
+    {
+      "title": "结果二：复制量与实际访存不同",
+      "start_seconds": 310.04210412186706,
+      "planned_duration_seconds": 45.1211622906088
+    },
+    {
+      "title": "结果三：活跃页不等于进程峰值",
+      "start_seconds": 355.1632664124759,
+      "planned_duration_seconds": 44.213664865646294
+    },
+    {
+      "title": "结果四：这份 CPU 分页实现更慢",
+      "start_seconds": 399.3769312781222,
+      "planned_duration_seconds": 43.52084425088997
+    },
+    {
+      "title": "限制与后续验证",
+      "start_seconds": 442.89777552901216,
+      "planned_duration_seconds": 47.472849166049265
+    },
+    {
+      "title": "结论与复现入口",
+      "start_seconds": 490.37062469506145,
+      "planned_duration_seconds": 49.629375304938655
+    }
+  ],
+  "sha256": "347f3b4d8a5cf0bf847bed7c67bda665d663e25fdb75b24ca25c7992e0a83e92",
+  "full_decode_check": "passed",
+  "status": "AI-assisted study presentation; not learner recording or formal submission"
+}

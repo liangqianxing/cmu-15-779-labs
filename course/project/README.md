@@ -16,3 +16,7 @@ python -m unittest discover -s tests -v
 共5类合成工作负载、3个种子、静态/动态基线及6种块长的独立/共享分页，210组配置、1470次原始计时。每请求固定K/V/Q，非完整LLM。active_slot_bytes、pool_tensor_bytes、copied_old_token_slots分列，未测量RSS或进程峰值内存，CPU分页路径慢于连续存储基线。
 
 [学习记录14](https://liangqianxing.github.io/posts/cmu-15-779-kv-cache-granularity-study/)解释前缀对齐、写时复制及计时边界。sources中的SHA-256可核对运行代码与33号缓存；历史gpu_status字段反映当时CPU项目安排，不否认后续独立GPU实验。
+
+## 文档与展示（2026-10-19 续篇）
+
+已归档[报告与展示独立快照](../../archives/kv-cache-deliverables-20261019/README.md)，含一页规格、6 页英文报告（正文 5 页）和 540.14 秒中文合成语音视频。上文“独立验收”所指材料现已完成文件与视觉/媒体核对；正式课程提交与本人掌握仍未验证。快照保留当时图表和相对路径，本目录现有实验展示文件未替换。

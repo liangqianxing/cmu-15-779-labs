@@ -1,0 +1,159 @@
+{
+  "boundary": "2026-10-19 frozen project documents; source HEAD cecf5110d8a95161bb5763eadfca94cd7a0cc50f",
+  "pdf_pages": {
+    "proposal": 1,
+    "report_body": 5,
+    "report_references": 1
+  },
+  "video_seconds": 540.14,
+  "zip_excludes": [
+    "output/video/kv-cache-presentation.mp4"
+  ],
+  "files": {
+    "33_paged_kv_cache.py": {
+      "sha256": "35b9eb75c275af0023d1d951d00948b928f4b725dedf5cb08b9c9e7515c6b977",
+      "bytes": 7419,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "README.md": {
+      "sha256": "67ae22c756f51a689f673a2fe54d62915cd14f7448d7dcf36736b5247518d59d",
+      "bytes": 3407,
+      "origin": "publication-note"
+    },
+    "course/project/analyze_results.py": {
+      "sha256": "6b9632b58c5ed147f5a1340ddbb2d9b505d22165313241342dd7598d91ae3e9f",
+      "bytes": 5973,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "course/project/figures/architecture.png": {
+      "sha256": "56d8ab1e81d6f75bef6965819dfba46f1192aa1df71feb14c4e9b9efbc71e394",
+      "bytes": 66417,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "course/project/figures/latency.png": {
+      "sha256": "fa765191539614d0ff49047e8d2a221608b7e35825698f41c5c5b3ab81eeeb2b",
+      "bytes": 52898,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "course/project/figures/storage.png": {
+      "sha256": "29050195aae5c4269619056572cd20f2fdd729b949195cc6ff096a89c42100bc",
+      "bytes": 153568,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "course/project/figures/video_storage.png": {
+      "sha256": "655aad47322f5fc6195a261e4232a38815ee1f436ecd2844b8b7b039e0469a09",
+      "bytes": 70642,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "course/project/make_video.py": {
+      "sha256": "57e88dddbc246cac4d3cc3db938fe3d7a1180db0b1042d1b7aa3edba0a62c8c5",
+      "bytes": 15728,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "course/project/presentation_transcript.md": {
+      "sha256": "b940124c7834bf5c4f1b2b967479cd673058cac2c20c430cfa43a5a7ee157788",
+      "bytes": 8497,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "course/project/proposal.tex": {
+      "sha256": "a7bb110950c4a7aed1aa130aaa72c80a6496ee9eeef84512ecb957765d4d7246",
+      "bytes": 3277,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "course/project/references.bib": {
+      "sha256": "817e7ed0ce694f64ac8a73a04f0aaef2752c1252cecb8a6cb0d2130ebe7694d2",
+      "bytes": 1525,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "course/project/report.tex": {
+      "sha256": "f951a9abdeb82ce3bbcec923743bb30a2279ba3025d954923b51ad541a0a544a",
+      "bytes": 16477,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "course/project/requirements.txt": {
+      "sha256": "b604648a62c88f48b25c55bbbf7dbbe8e1eb65fbecbac6f6d7bbc2da33fb1b80",
+      "bytes": 113,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "course/project/results_table.tex": {
+      "sha256": "b55c68403f9c5c300d49094175c6f1d659b860482f7df731b98fd95d603a46c7",
+      "bytes": 344,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "course/project/run_experiments.py": {
+      "sha256": "c249e039e11e2c16cf0c2e078bfd8842d381f7633a6a6463ed9a7072a63b0b6e",
+      "bytes": 10414,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "course/project/summary.json": {
+      "sha256": "745ddd05c54ddb1e7244b8c768940f54383a0a532a0d55ccb0fa175f4f374810",
+      "bytes": 1068,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "course/project/template/algorithm.sty": {
+      "sha256": "93fd0eb31c112eb405833db8f1d7f5d238c7e691b1c05680d7276e68f36d564a",
+      "bytes": 2223,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "course/project/template/algorithmic.sty": {
+      "sha256": "48d18794a5d97c0479a588cc2eac0917992feb9da83acc4631b8f55757d80f9b",
+      "bytes": 7414,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "course/project/template/fancyhdr.sty": {
+      "sha256": "b56ec4434b9f4607529a4b23dc68ad8d4b94f1f631c8cddaf7da78140d53a5ea",
+      "bytes": 20521,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "course/project/template/mlsys2025.bst": {
+      "sha256": "c9c9f1b83e32512b93f6208e28ba2989fc691b6f70763ad0657a77d44bc067a7",
+      "bytes": 26917,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "course/project/template/mlsys2025.sty": {
+      "sha256": "05a9842992b7ef71851fd2380a1058f83b0faafc106602cabc4c169d372ad8e2",
+      "bytes": 25967,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "course/project/template/source.json": {
+      "sha256": "fd662d87aad5038ccbfc8bcebd64ba2334dca69b50b5d93db25e87b5450977f2",
+      "bytes": 230,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "output/pdf/proposal.pdf": {
+      "sha256": "0ea4a2cbbb37b8f4ef4d71022396cb1a2558450b8242607f60257909da048d1e",
+      "bytes": 16232,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "output/pdf/report.pdf": {
+      "sha256": "7dddfe39782a599cd78fb0b3c85a1983f67692a2d59f7c88d43cf57c24bda9d6",
+      "bytes": 325149,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "output/video/kv-cache-presentation.mp4": {
+      "sha256": "347f3b4d8a5cf0bf847bed7c67bda665d663e25fdb75b24ca25c7992e0a83e92",
+      "bytes": 8149428,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "output/video/presentation_manifest.json": {
+      "sha256": "9d7b263b0f7d32fbb1e09a25beeba8c22f8ffe84a7bdd7ae4b6c58138bdedc76",
+      "bytes": 2388,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "requirements.txt": {
+      "sha256": "f6975d02c652d04ea8f27b3dfd5d7b4f9cb28396f361aa99af31fd020846a6b6",
+      "bytes": 27,
+      "origin": "code-200faf569eccf94fb125e65110bb5d14094d454a"
+    },
+    "results/project_kv_granularity.json": {
+      "sha256": "317a7a6d6b8861bacc1775a34d1db140ecbdec20e4a1699958a4a00c750b77be",
+      "bytes": 169572,
+      "origin": "learning-freeze-20261019-d"
+    },
+    "tests/test_project_kv.py": {
+      "sha256": "2d7cf426b39707542333d8be86ffa3fb650139c84b18e7a2939f3413426f45c6",
+      "bytes": 1743,
+      "origin": "code-200faf569eccf94fb125e65110bb5d14094d454a"
+    }
+  }
+}

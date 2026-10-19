@@ -1,0 +1,6 @@
+-r ../../requirements.txt
+matplotlib==3.11.2
+pillow==13.0.0
+reportlab==5.0.1
+pypdf==6.21.1
+imageio-ffmpeg==0.6.0
