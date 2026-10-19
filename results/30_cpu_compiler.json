@@ -1,0 +1,111 @@
+{
+  "recorded_at": "2026-10-19T08:30:38.394627+08:00",
+  "script_sha256": "21325ac4cee61ae63341b98261b858bcc4537c1693b2d38f16277328e53532a3",
+  "environment": {
+    "python": "3.11.15",
+    "torch": "2.14.1",
+    "architecture": "arm64",
+    "device": "cpu",
+    "threads": 1
+  },
+  "gpu_status": "skipped_by_user_request",
+  "cuda_execution_verified": false,
+  "rewrites": {
+    "linear_batchnorm_eval": {
+      "max_abs_error": 8.881784197001252e-16,
+      "module_operations_before": 2,
+      "module_operations_after": 1
+    },
+    "rmsnorm_linear": {
+      "max_abs_error": 1.3322676295501878e-15,
+      "precondition": "Fixed gamma/weight; per-row denominator moved across linear map, no intervening nonlinearity"
+    },
+    "rejected_relu_rewrite": {
+      "relu_after_linear": 2.0,
+      "relu_before_linear": 1.0
+    },
+    "verification_scope": "Numerical fixtures plus explicit rule preconditions; not a formal equivalence proof"
+  },
+  "schedule_search": {
+    "shape": {
+      "m": 97,
+      "k": 65,
+      "n": 81
+    },
+    "dtype": "float64",
+    "candidate_execution": "Python blocked loops invoking PyTorch CPU matmul, not generated Triton/TVM kernels",
+    "candidate_measurement_order": [
+      32,
+      16,
+      128,
+      64
+    ],
+    "candidates": [
+      {
+        "tile": 32,
+        "outputs_close": true,
+        "max_abs_error": 1.7763568394002505e-14,
+        "median_ms": 0.2886366649181582,
+        "iqr_ms": 0.0003129147808067479,
+        "measurements": 2,
+        "number_per_run": 100
+      },
+      {
+        "tile": 16,
+        "outputs_close": true,
+        "max_abs_error": 2.4868995751603507e-14,
+        "median_ms": 1.445974997477606,
+        "iqr_ms": 0.021570801618509036,
+        "measurements": 3,
+        "number_per_run": 10
+      },
+      {
+        "tile": 128,
+        "outputs_close": true,
+        "max_abs_error": 0.0,
+        "median_ms": 0.017947499989531934,
+        "iqr_ms": 0.00010014598956331584,
+        "measurements": 3,
+        "number_per_run": 1000
+      },
+      {
+        "tile": 64,
+        "outputs_close": true,
+        "max_abs_error": 3.552713678800501e-15,
+        "median_ms": 0.07665933395037428,
+        "iqr_ms": 0.0,
+        "measurements": 1,
+        "number_per_run": 1000
+      }
+    ],
+    "selected_tile": 128,
+    "torch_matmul_baseline": {
+      "median_ms": 0.007439029100351035,
+      "iqr_ms": 0.0,
+      "measurements": 1,
+      "number_per_run": 10000
+    },
+    "interpretation": "Winner applies only to this shape, CPU, threading and candidate set; no global optimality claim"
+  },
+  "inductor": {
+    "status": "executed",
+    "backend": "inductor",
+    "device": "cpu",
+    "fullgraph": true,
+    "compile_and_first_call_ms": 8628.539666999131,
+    "outputs_close_on_two_inputs": true,
+    "eager": {
+      "median_ms": 0.021665312524419278,
+      "iqr_ms": 0.00103172950912267,
+      "measurements": 2,
+      "number_per_run": 1000
+    },
+    "compiled_warm": {
+      "median_ms": 0.018639624991919845,
+      "iqr_ms": 0.0002131244982592762,
+      "measurements": 3,
+      "number_per_run": 1000
+    },
+    "timing_scope": "Warm CPU calls measured separately; cold first call includes compilation/cache lookup"
+  }
+}

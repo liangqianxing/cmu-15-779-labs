@@ -1,6 +1,6 @@
 # CMU 15-779 代码实验
 
-CMU 15-779 学习记录中的配套代码。已运行的 CPU 练习包含自动求导、线性回归、小型 ReLU 网络、DataLoader、参数保存、批量推理、绝对值网络、算子性能分析、CUDA 索引演示、矩阵分块、树形归约与在线 Softmax。`cuda/` 中的 CUDA C++ 源码尚未编译或执行。
+CMU 15-779 学习记录中的配套代码。已运行的 CPU 练习包含自动求导、线性回归、小型 ReLU 网络、DataLoader、参数保存、批量推理、绝对值网络、算子性能分析、CUDA 索引演示、矩阵分块、树形归约、在线 Softmax、KV cache 与 CPU 编译优化。`cuda/` 中的 CUDA C++ 源码尚未编译或执行。
 
 ## 环境
 
@@ -25,9 +25,9 @@ python3.11 -m venv .venv
 | [04：多输出线性层、ReLU 与绝对值网络](https://liangqianxing.github.io/posts/cmu-15-779-pytorch-linear-relu-absolute-value/) | `16` 至 `19` | Linear 参数对照、多输出、逐层计算和绝对值拟合 |
 | [05：Profiler、算子调用与批量推理](https://liangqianxing.github.io/posts/cmu-15-779-profiler-operator-batching/) | `22` 至 `24` | 前向计算分析、调用次数与固定工作量的 batch size 扫描 |
 | [06：CUDA 线程索引与边界检查](https://liangqianxing.github.io/posts/cmu-15-779-cuda-thread-indexing/) | `25` | CPU 索引演示、边界案例及未执行的 CUDA 源码 |
-
 | [07：矩阵分块、数据复用与树形归约](https://liangqianxing.github.io/posts/cmu-15-779-matmul-tiling-tree-reduction/) | `26`、`27` | CPU 逻辑读取、依赖深度与浮点求和顺序；CUDA 矩阵乘法未执行 |
-| [08：分块 Attention 与在线 Softmax](https://liangqianxing.github.io/posts/cmu-15-779-attention-online-softmax/) | `28` | 单头前向与 CPU SDPA MATH 对照，分数块大小；无 GPU 性能结论 |
+| [08：分块 Attention、在线 Softmax 与 KV cache](https://liangqianxing.github.io/posts/cmu-15-779-attention-online-softmax/) | `28`、`29` | 单头前向、在线归一化和逐前缀 KV cache 对照；无 GPU 性能结论 |
+| [09：CPU 编译优化、合法重写与候选搜索](https://liangqianxing.github.io/posts/cmu-15-779-cpu-compiler-optimizations/) | `30` | BatchNorm 折叠、RMSNorm 重排、分块候选计时与 TorchInductor CPU 编译 |
 
 各脚本是逐步练习的独立版本，可以按编号运行。
 
@@ -88,4 +88,20 @@ python3.11 -m venv .venv
 .venv/bin/python -m unittest discover -s tests -v
 ```
 
-`tests/` 包含 21 项测试，覆盖矩阵乘法边界与计数、归约长度及浮点求和顺序、Attention 掩码、分块、数据类型、运行最大值修正和非法输入。Attention 只验证前向，不包含反向传播、dropout、padding mask 或全遮蔽行，不是完整 Transformer，也不是 FlashAttention GPU kernel。
+`tests/` 现包含 30 项测试，覆盖矩阵乘法边界与计数、归约长度及浮点求和顺序、Attention 掩码、分块、数据类型、运行最大值修正和非法输入。Attention 只验证前向，不包含反向传播、dropout、padding mask 或全遮蔽行，不是完整 Transformer，也不是 FlashAttention GPU kernel。
+
+## 2026-10-19：Attention 续篇与 CPU 编译实验
+
+本次发布以冻结的 29/30 号脚本和原始结果为界。源学习聊天仍在继续；本副本没有包含后续未核验内容。KV cache 合并到记录 08，CPU 编译实验为记录 09。新增内容均为个人配套实验，不是官方作业或整门课程完成证明。真实 GPU 实验按学习者要求跳过。
+
+```bash
+.venv/bin/python 29_kv_cache.py --output results/29_kv_cache-rerun.json
+.venv/bin/python 30_cpu_compiler.py --compile --output results/30_cpu_compiler-rerun.json
+.venv/bin/python -m unittest discover -s tests -v
+```
+
+29 号以每次重算整个前缀的投影和完整因果 Attention 为基线，计数是算法工作量，不是加速倍数或 FLOPs。它只验证固定输入表示的一层单头 Attention，使用 `torch.cat` 增长缓存，不生成文本。
+
+30 号原始报告的 `inductor.status` 为 `executed`；编译后函数通过两组输入对照。首调用包含编译或缓存查询，另列预热后计时。分块候选是 Python 循环调用 PyTorch CPU 矩阵乘法，不能解释为生成了 Triton/TVM GPU kernel。BatchNorm 折叠要求 eval 模式和固定运行统计量；RMSNorm 重排只针对脚本中的无偏置线性映射及固定参数。
+
+`results/29_cpu_tests.txt` 是源聊天保存的 25 项测试日志；`results/30_cpu_tests.txt` 是本次冻结副本复验的 30 项日志，新增 KV cache 和编译测试均通过。源码与原始结果对应的 SHA-256 可在各 JSON 的 `script_sha256` 中核对。计时会随运行环境和编译缓存状态变化。

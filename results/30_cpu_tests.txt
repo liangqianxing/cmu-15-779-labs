@@ -1,0 +1,35 @@
+test_batchnorm_fold_with_and_without_affine_and_linear_bias (test_cpu_compiler.CompilerTests.test_batchnorm_fold_with_and_without_affine_and_linear_bias) ... ok
+test_blocked_schedules_partial_empty_and_noncontiguous (test_cpu_compiler.CompilerTests.test_blocked_schedules_partial_empty_and_noncontiguous) ... ok
+test_folding_rejects_dynamic_statistics_or_wrong_shape (test_cpu_compiler.CompilerTests.test_folding_rejects_dynamic_statistics_or_wrong_shape) ... ok
+test_invalid_matmul_and_nonlinear_rewrite (test_cpu_compiler.CompilerTests.test_invalid_matmul_and_nonlinear_rewrite) ... ok
+test_row_denominator_rewrite_handles_zero_rows_and_signed_gamma (test_cpu_compiler.CompilerTests.test_row_denominator_rewrite_handles_zero_rows_and_signed_gamma) ... ok
+test_changing_running_max_rescales_previous_blocks (test_cpu_reduction_attention.AttentionTests.test_changing_running_max_rescales_previous_blocks) ... ok
+test_future_keys_and_values_do_not_affect_prefix (test_cpu_reduction_attention.AttentionTests.test_future_keys_and_values_do_not_affect_prefix) ... ok
+test_invalid_cli_does_not_write_results (test_cpu_reduction_attention.AttentionTests.test_invalid_cli_does_not_write_results) ... ok
+test_invalid_shapes_types_and_values (test_cpu_reduction_attention.AttentionTests.test_invalid_shapes_types_and_values) ... ok
+test_large_finite_scores_are_stable (test_cpu_reduction_attention.AttentionTests.test_large_finite_scores_are_stable) ... ok
+test_noncontiguous_inputs_and_forward_only (test_cpu_reduction_attention.AttentionTests.test_noncontiguous_inputs_and_forward_only) ... ok
+test_shapes_masks_dtypes_and_tiles (test_cpu_reduction_attention.AttentionTests.test_shapes_masks_dtypes_and_tiles) ... ok
+test_zero_scores_give_uniform_or_prefix_mean (test_cpu_reduction_attention.AttentionTests.test_zero_scores_give_uniform_or_prefix_mean) ... ok
+test_cancellation_exposes_order (test_cpu_reduction_attention.ReductionTests.test_cancellation_exposes_order) ... ok
+test_invalid_inputs (test_cpu_reduction_attention.ReductionTests.test_invalid_inputs) ... ok
+test_lecture_example (test_cpu_reduction_attention.ReductionTests.test_lecture_example) ... ok
+test_many_lengths_and_block_sizes (test_cpu_reduction_attention.ReductionTests.test_many_lengths_and_block_sizes) ... ok
+test_random_floats_with_tolerance (test_cpu_reduction_attention.ReductionTests.test_random_floats_with_tolerance) ... ok
+test_staged_partials (test_cpu_reduction_attention.ReductionTests.test_staged_partials) ... ok
+test_invalid_parameters (test_kv_cache.KVCacheTests.test_invalid_parameters) ... ok
+test_past_outputs_do_not_use_future_tokens (test_kv_cache.KVCacheTests.test_past_outputs_do_not_use_future_tokens) ... ok
+test_prefix_outputs_counts_and_cache_size (test_kv_cache.KVCacheTests.test_prefix_outputs_counts_and_cache_size) ... ok
+test_single_query_attends_all_cached_keys (test_kv_cache.KVCacheTests.test_single_query_attends_all_cached_keys) ... ok
+test_cli_rejects_invalid_inputs_without_writing (test_matmul_tiling.MatmulTilingTests.test_cli_rejects_invalid_inputs_without_writing) ... ok
+test_exhaustive_small_shapes (test_matmul_tiling.MatmulTilingTests.test_exhaustive_small_shapes) ... ok
+test_invalid_inputs (test_matmul_tiling.MatmulTilingTests.test_invalid_inputs) ... ok
+test_partial_tiles (test_matmul_tiling.MatmulTilingTests.test_partial_tiles) ... ok
+test_random_inputs (test_matmul_tiling.MatmulTilingTests.test_random_inputs) ... ok
+test_square_counts (test_matmul_tiling.MatmulTilingTests.test_square_counts) ... ok
+test_zero_inner_dimension (test_matmul_tiling.MatmulTilingTests.test_zero_inner_dimension) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 3.417s
+
+OK
