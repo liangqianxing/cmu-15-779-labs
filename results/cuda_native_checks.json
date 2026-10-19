@@ -1,0 +1,127 @@
+{
+  "recorded_at": "2026-10-19T06:34:10.821294+00:00",
+  "gpu_execution": "requested",
+  "steps": [
+    {
+      "command": [
+        "nvidia-smi",
+        "--query-gpu=name,memory.total,driver_version",
+        "--format=csv,noheader"
+      ],
+      "returncode": 0,
+      "stdout": "NVIDIA GeForce RTX 4080 SUPER, 32760 MiB, 595.71.05\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/local/cuda/bin/nvcc",
+        "--version"
+      ],
+      "returncode": 0,
+      "stdout": "nvcc: NVIDIA (R) Cuda compiler driver\nCopyright (c) 2005-2025 NVIDIA Corporation\nBuilt on Fri_Feb_21_20:23:50_PST_2025\nCuda compilation tools, release 12.8, V12.8.93\nBuild cuda_12.8.r12.8/compiler.35583870_0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/local/cuda/bin/nvcc",
+        "-O2",
+        "-std=c++17",
+        "-lineinfo",
+        "/tmp/cmu15779-psRjk7/cuda/25_vector_add.cu",
+        "-o",
+        "/tmp/cmu15779-psRjk7/build/cuda/25_vector_add"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "nvcc warning : Support for offline compilation for architectures prior to '<compute/sm/lto>_75' will be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).\n"
+    },
+    {
+      "command": [
+        "/tmp/cmu15779-psRjk7/build/cuda/25_vector_add"
+      ],
+      "returncode": 0,
+      "stdout": "Device: NVIDIA GeForce RTX 4080 SUPER, compute capability: 8.9\nn=0: no launch required\nn=1, threads=4, blocks=1: PASS\nn=8, threads=4, blocks=2: PASS\nn=10, threads=4, blocks=3: PASS\nn=17, threads=32, blocks=1: PASS\nn=257, threads=128, blocks=3: PASS\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/local/cuda/bin/compute-sanitizer",
+        "--tool",
+        "memcheck",
+        "--error-exitcode",
+        "1",
+        "/tmp/cmu15779-psRjk7/build/cuda/25_vector_add"
+      ],
+      "returncode": 0,
+      "stdout": "========= COMPUTE-SANITIZER\nDevice: NVIDIA GeForce RTX 4080 SUPER, compute capability: 8.9\nn=0: no launch required\nn=1, threads=4, blocks=1: PASS\nn=8, threads=4, blocks=2: PASS\nn=10, threads=4, blocks=3: PASS\nn=17, threads=32, blocks=1: PASS\nn=257, threads=128, blocks=3: PASS\n========= ERROR SUMMARY: 0 errors\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/local/cuda/bin/nvcc",
+        "-O2",
+        "-std=c++17",
+        "-lineinfo",
+        "/tmp/cmu15779-psRjk7/cuda/26_matmul_tiling.cu",
+        "-o",
+        "/tmp/cmu15779-psRjk7/build/cuda/26_matmul_tiling"
+      ],
+      "returncode": 0,
+      "stdout": "",
+      "stderr": "nvcc warning : Support for offline compilation for architectures prior to '<compute/sm/lto>_75' will be removed in a future release (Use -Wno-deprecated-gpu-targets to suppress warning).\n"
+    },
+    {
+      "command": [
+        "/tmp/cmu15779-psRjk7/build/cuda/26_matmul_tiling"
+      ],
+      "returncode": 0,
+      "stdout": "Device: NVIDIA GeForce RTX 4080 SUPER, compute capability: 8.9, driver API: 13020, runtime: 12080\nCorrectness checks only; no performance measurements.\nm=0 k=5 n=3 tile=4: empty output, no launch\nm=3 k=5 n=0 tile=4: empty output, no launch\nm=3 k=0 n=5 tile=4 naive: PASS max_abs_error=0\nm=3 k=0 n=5 tile=4 tiled: PASS max_abs_error=0\nm=1 k=1 n=1 tile=4 naive: PASS max_abs_error=0\nm=1 k=1 n=1 tile=4 tiled: PASS max_abs_error=0\nm=4 k=4 n=4 tile=2 naive: PASS max_abs_error=0\nm=4 k=4 n=4 tile=2 tiled: PASS max_abs_error=0\nm=3 k=5 n=7 tile=4 naive: PASS max_abs_error=0\nm=3 k=5 n=7 tile=4 tiled: PASS max_abs_error=0\nm=7 k=3 n=5 tile=2 naive: PASS max_abs_error=0\nm=7 k=3 n=5 tile=2 tiled: PASS max_abs_error=0\nm=17 k=9 n=13 tile=8 naive: PASS max_abs_error=0\nm=17 k=9 n=13 tile=8 tiled: PASS max_abs_error=0\nm=8 k=8 n=8 tile=1 naive: PASS max_abs_error=0\nm=8 k=8 n=8 tile=1 tiled: PASS max_abs_error=0\nm=8 k=8 n=8 tile=2 naive: PASS max_abs_error=0\nm=8 k=8 n=8 tile=2 tiled: PASS max_abs_error=0\nm=8 k=8 n=8 tile=4 naive: PASS max_abs_error=0\nm=8 k=8 n=8 tile=4 tiled: PASS max_abs_error=0\nm=8 k=8 n=8 tile=8 naive: PASS max_abs_error=0\nm=8 k=8 n=8 tile=8 tiled: PASS max_abs_error=0\nm=17 k=9 n=13 tile=16 naive: PASS max_abs_error=0\nm=17 k=9 n=13 tile=16 tiled: PASS max_abs_error=0\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/local/cuda/bin/compute-sanitizer",
+        "--tool",
+        "memcheck",
+        "--error-exitcode",
+        "1",
+        "/tmp/cmu15779-psRjk7/build/cuda/26_matmul_tiling"
+      ],
+      "returncode": 0,
+      "stdout": "========= COMPUTE-SANITIZER\nDevice: NVIDIA GeForce RTX 4080 SUPER, compute capability: 8.9, driver API: 13020, runtime: 12080\nCorrectness checks only; no performance measurements.\nm=0 k=5 n=3 tile=4: empty output, no launch\nm=3 k=5 n=0 tile=4: empty output, no launch\nm=3 k=0 n=5 tile=4 naive: PASS max_abs_error=0\nm=3 k=0 n=5 tile=4 tiled: PASS max_abs_error=0\nm=1 k=1 n=1 tile=4 naive: PASS max_abs_error=0\nm=1 k=1 n=1 tile=4 tiled: PASS max_abs_error=0\nm=4 k=4 n=4 tile=2 naive: PASS max_abs_error=0\nm=4 k=4 n=4 tile=2 tiled: PASS max_abs_error=0\nm=3 k=5 n=7 tile=4 naive: PASS max_abs_error=0\nm=3 k=5 n=7 tile=4 tiled: PASS max_abs_error=0\nm=7 k=3 n=5 tile=2 naive: PASS max_abs_error=0\nm=7 k=3 n=5 tile=2 tiled: PASS max_abs_error=0\nm=17 k=9 n=13 tile=8 naive: PASS max_abs_error=0\nm=17 k=9 n=13 tile=8 tiled: PASS max_abs_error=0\nm=8 k=8 n=8 tile=1 naive: PASS max_abs_error=0\nm=8 k=8 n=8 tile=1 tiled: PASS max_abs_error=0\nm=8 k=8 n=8 tile=2 naive: PASS max_abs_error=0\nm=8 k=8 n=8 tile=2 tiled: PASS max_abs_error=0\nm=8 k=8 n=8 tile=4 naive: PASS max_abs_error=0\nm=8 k=8 n=8 tile=4 tiled: PASS max_abs_error=0\nm=8 k=8 n=8 tile=8 naive: PASS max_abs_error=0\nm=8 k=8 n=8 tile=8 tiled: PASS max_abs_error=0\nm=17 k=9 n=13 tile=16 naive: PASS max_abs_error=0\nm=17 k=9 n=13 tile=16 tiled: PASS max_abs_error=0\n========= ERROR SUMMARY: 0 errors\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/local/cuda/bin/compute-sanitizer",
+        "--tool",
+        "racecheck",
+        "--error-exitcode",
+        "1",
+        "/tmp/cmu15779-psRjk7/build/cuda/26_matmul_tiling"
+      ],
+      "returncode": 0,
+      "stdout": "========= COMPUTE-SANITIZER\nDevice: NVIDIA GeForce RTX 4080 SUPER, compute capability: 8.9, driver API: 13020, runtime: 12080\nCorrectness checks only; no performance measurements.\nm=0 k=5 n=3 tile=4: empty output, no launch\nm=3 k=5 n=0 tile=4: empty output, no launch\nm=3 k=0 n=5 tile=4 naive: PASS max_abs_error=0\nm=3 k=0 n=5 tile=4 tiled: PASS max_abs_error=0\nm=1 k=1 n=1 tile=4 naive: PASS max_abs_error=0\nm=1 k=1 n=1 tile=4 tiled: PASS max_abs_error=0\nm=4 k=4 n=4 tile=2 naive: PASS max_abs_error=0\nm=4 k=4 n=4 tile=2 tiled: PASS max_abs_error=0\nm=3 k=5 n=7 tile=4 naive: PASS max_abs_error=0\nm=3 k=5 n=7 tile=4 tiled: PASS max_abs_error=0\nm=7 k=3 n=5 tile=2 naive: PASS max_abs_error=0\nm=7 k=3 n=5 tile=2 tiled: PASS max_abs_error=0\nm=17 k=9 n=13 tile=8 naive: PASS max_abs_error=0\nm=17 k=9 n=13 tile=8 tiled: PASS max_abs_error=0\nm=8 k=8 n=8 tile=1 naive: PASS max_abs_error=0\nm=8 k=8 n=8 tile=1 tiled: PASS max_abs_error=0\nm=8 k=8 n=8 tile=2 naive: PASS max_abs_error=0\nm=8 k=8 n=8 tile=2 tiled: PASS max_abs_error=0\nm=8 k=8 n=8 tile=4 naive: PASS max_abs_error=0\nm=8 k=8 n=8 tile=4 tiled: PASS max_abs_error=0\nm=8 k=8 n=8 tile=8 naive: PASS max_abs_error=0\nm=8 k=8 n=8 tile=8 tiled: PASS max_abs_error=0\nm=17 k=9 n=13 tile=16 naive: PASS max_abs_error=0\nm=17 k=9 n=13 tile=16 tiled: PASS max_abs_error=0\n========= RACECHECK SUMMARY: 0 hazards displayed (0 errors, 0 warnings)\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "/usr/local/cuda/bin/compute-sanitizer",
+        "--tool",
+        "synccheck",
+        "--error-exitcode",
+        "1",
+        "/tmp/cmu15779-psRjk7/build/cuda/26_matmul_tiling"
+      ],
+      "returncode": 0,
+      "stdout": "========= COMPUTE-SANITIZER\nDevice: NVIDIA GeForce RTX 4080 SUPER, compute capability: 8.9, driver API: 13020, runtime: 12080\nCorrectness checks only; no performance measurements.\nm=0 k=5 n=3 tile=4: empty output, no launch\nm=3 k=5 n=0 tile=4: empty output, no launch\nm=3 k=0 n=5 tile=4 naive: PASS max_abs_error=0\nm=3 k=0 n=5 tile=4 tiled: PASS max_abs_error=0\nm=1 k=1 n=1 tile=4 naive: PASS max_abs_error=0\nm=1 k=1 n=1 tile=4 tiled: PASS max_abs_error=0\nm=4 k=4 n=4 tile=2 naive: PASS max_abs_error=0\nm=4 k=4 n=4 tile=2 tiled: PASS max_abs_error=0\nm=3 k=5 n=7 tile=4 naive: PASS max_abs_error=0\nm=3 k=5 n=7 tile=4 tiled: PASS max_abs_error=0\nm=7 k=3 n=5 tile=2 naive: PASS max_abs_error=0\nm=7 k=3 n=5 tile=2 tiled: PASS max_abs_error=0\nm=17 k=9 n=13 tile=8 naive: PASS max_abs_error=0\nm=17 k=9 n=13 tile=8 tiled: PASS max_abs_error=0\nm=8 k=8 n=8 tile=1 naive: PASS max_abs_error=0\nm=8 k=8 n=8 tile=1 tiled: PASS max_abs_error=0\nm=8 k=8 n=8 tile=2 naive: PASS max_abs_error=0\nm=8 k=8 n=8 tile=2 tiled: PASS max_abs_error=0\nm=8 k=8 n=8 tile=4 naive: PASS max_abs_error=0\nm=8 k=8 n=8 tile=4 tiled: PASS max_abs_error=0\nm=8 k=8 n=8 tile=8 naive: PASS max_abs_error=0\nm=8 k=8 n=8 tile=8 tiled: PASS max_abs_error=0\nm=17 k=9 n=13 tile=16 naive: PASS max_abs_error=0\nm=17 k=9 n=13 tile=16 tiled: PASS max_abs_error=0\n========= ERROR SUMMARY: 0 errors\n",
+      "stderr": ""
+    }
+  ],
+  "sources": {
+    "25_vector_add.cu": "bc441870fe8002357917343ef0c710dab92422c681ee1de69b864d808812ee89",
+    "26_matmul_tiling.cu": "f35a95ffbc378a401df6119c12738ee0eea2717c38f69f7a336044d7c2ee8a41"
+  },
+  "status": "passed",
+  "scope": "Actual native CUDA correctness and named sanitizer checks; no native kernel timing"
+}

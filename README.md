@@ -1,6 +1,6 @@
 # CMU 15-779 代码实验
 
-CMU 15-779 学习记录中的配套代码。已运行的 CPU 练习包含自动求导、线性回归、小型 ReLU 网络、DataLoader、参数保存、批量推理、绝对值网络、算子性能分析、CUDA 索引演示、矩阵分块、树形归约、在线 Softmax、KV cache、CPU 编译优化，以及并行训练、推理服务、LoRA 和 MoE 的 CPU 实验。`cuda/` 中的 CUDA C++ 源码尚未编译或执行。
+CMU 15-779 学习记录中的配套代码。已运行的 CPU 练习包含自动求导、线性回归、小型 ReLU 网络、DataLoader、参数保存、批量推理、绝对值网络、算子性能分析、CUDA 索引演示、矩阵分块、树形归约、在线 Softmax、KV cache、CPU 编译优化，以及并行训练、推理服务、LoRA 和 MoE 的 CPU 实验。2026-10-19 已在获授权的单卡环境运行 `cuda/` 中的向量加法和矩阵乘法，并补入 Triton 与显式 CUDA SDPA 后端记录；历史 CPU 报告保留原样。
 
 ## 环境
 
@@ -24,14 +24,15 @@ python3.11 -m venv .venv
 | [03：DataLoader、模型保存与批量推理](https://liangqianxing.github.io/posts/cmu-15-779-pytorch-dataloader-checkpoints-batching/) | `11` 至 `16` | 分批训练、参数恢复、推理计时和矩阵乘法 |
 | [04：多输出线性层、ReLU 与绝对值网络](https://liangqianxing.github.io/posts/cmu-15-779-pytorch-linear-relu-absolute-value/) | `16` 至 `19` | Linear 参数对照、多输出、逐层计算和绝对值拟合 |
 | [05：Profiler、算子调用与批量推理](https://liangqianxing.github.io/posts/cmu-15-779-profiler-operator-batching/) | `22` 至 `24` | 前向计算分析、调用次数与固定工作量的 batch size 扫描 |
-| [06：CUDA 线程索引与边界检查](https://liangqianxing.github.io/posts/cmu-15-779-cuda-thread-indexing/) | `25` | CPU 索引演示、边界案例及未执行的 CUDA 源码 |
-| [07：矩阵分块、数据复用与树形归约](https://liangqianxing.github.io/posts/cmu-15-779-matmul-tiling-tree-reduction/) | `26`、`27` | CPU 逻辑读取、依赖深度与浮点求和顺序；CUDA 矩阵乘法未执行 |
-| [08：分块 Attention、在线 Softmax 与 KV cache](https://liangqianxing.github.io/posts/cmu-15-779-attention-online-softmax/) | `28`、`29` | 单头前向、在线归一化和逐前缀 KV cache 对照；无 GPU 性能结论 |
+| [06：CUDA 线程索引与边界检查](https://liangqianxing.github.io/posts/cmu-15-779-cuda-thread-indexing/) | `25`、`38` | CPU 索引演示；新增原生 CUDA 编译、memcheck 与 Triton 向量加法 |
+| [07：矩阵分块、数据复用与树形归约](https://liangqianxing.github.io/posts/cmu-15-779-matmul-tiling-tree-reduction/) | `26`、`27`、`38` | CPU 逻辑计数；新增 CUDA 矩阵及 Triton 归约/矩阵实测 |
+| [08：分块 Attention、在线 Softmax 与 KV cache](https://liangqianxing.github.io/posts/cmu-15-779-attention-online-softmax/) | `28`、`29`、`38` | CPU 在线归一化/KV；新增 CUDA 显式 MATH/FLASH 前向和调用区间计时 |
 | [09：CPU 编译优化、合法重写与候选搜索](https://liangqianxing.github.io/posts/cmu-15-779-cpu-compiler-optimizations/) | `30` | BatchNorm 折叠、RMSNorm 重排、分块候选计时与 TorchInductor CPU 编译 |
 | [10：加权梯度、状态分片与流水线](https://liangqianxing.github.io/posts/cmu-15-779-cpu-parallelism-pipeline/) | `31`、`32` | 双 CPU 进程 Gloo；张量切分、持久状态及同步流水线成本模型 |
 | [11：分页 KV、连续批处理与推测采样](https://liangqianxing.github.io/posts/cmu-15-779-kv-serving-speculative-sampling/) | `33`、`34`、`37` | CPU 写时复制、单位成本调度与小概率模型的分布修正 |
 | [12：LoRA 与均匀 4-bit 打包](https://liangqianxing.github.io/posts/cmu-15-779-lora-uniform-quantization/) | `35` | 低秩分支、首步梯度、合并及有损均匀量化；未实现 QLoRA |
 | [13：MoE 路由与容量](https://liangqianxing.github.io/posts/cmu-15-779-moe-routing-capacity/) | `36` | CPU 稀疏分发、输出/梯度对照和容量丢弃的数值影响 |
+| [14：KV 页大小、共享边界与 CPU 实现成本](https://liangqianxing.github.io/posts/cmu-15-779-kv-cache-granularity-study/) | `course/project/` | 210 组配置、1470 次原始计时；活跃槽位与池容量分列，保留慢于基线的结果 |
 
 各脚本是逐步练习的独立版本，可以按编号运行。
 
@@ -75,7 +76,7 @@ python3.11 -m venv .venv
 - `19_learn_abs.py` 使用随机种子 `0`、21 个训练点和 SGD（学习率 `0.05`），训练 3000 步。训练集均方误差约为 `0.00005678`；检查输入 `[-0.8, 0, 0.8]` 同样包含在训练集中，不能作为独立测试集评估。
 
 - `22` 至 `24` 是对照 ML Systems 基础的个人配套实验，不是 CMU 官方作业。`24` 固定一个 CPU 线程，将完整处理全部输入样本作为计时单位；原始测量保存在 `results/24_batch_size_sweep.json`，复跑时用 `--output` 另存。
-- `25_cuda_indexing.py` 只在 CPU 上演示索引映射，原始结果保存在 `results/25_cuda_indexing.json` 和 `results/25_indexing_17_8.json`。它不测 GPU 性能，也不能证明 CUDA 设备内存访问安全。`cuda/25_vector_add.cu` 尚未编译执行，验证方法与当前限制见 [CUDA 运行说明](cuda/README.md)。
+- `25_cuda_indexing.py` 只在 CPU 上演示索引映射，原始结果保存在 `results/25_cuda_indexing.json` 和 `results/25_indexing_17_8.json`。它不测 GPU 性能，也不能证明 CUDA 设备内存访问安全。`cuda/25_vector_add.cu` 在首次 CPU 记录中尚未编译执行；2026-10-19 的实际续验见 [CUDA 运行说明](cuda/README.md)。
 
 [课程学习专题](https://liangqianxing.github.io/learning/cmu-15-779/)提供学习资料与上述记录的入口。
 
@@ -92,11 +93,11 @@ python3.11 -m venv .venv
 .venv/bin/python -m unittest discover -s tests -v
 ```
 
-`tests/` 现包含 52 项测试，覆盖矩阵乘法边界与计数、归约长度及浮点求和顺序、Attention 掩码、分块、数据类型、运行最大值修正和非法输入。Attention 只验证前向，不包含反向传播、dropout、padding mask 或全遮蔽行，不是完整 Transformer，也不是 FlashAttention GPU kernel。
+`tests/` 现包含 54 项测试，覆盖矩阵乘法边界与计数、归约长度及浮点求和顺序、Attention 掩码、分块、数据类型、运行最大值修正和非法输入。Attention 只验证前向，不包含反向传播、dropout、padding mask 或全遮蔽行，不是完整 Transformer，也不是 FlashAttention GPU kernel。
 
 ## 2026-10-19：Attention 续篇与 CPU 编译实验
 
-本次发布以冻结的 29/30 号脚本和原始结果为界。源学习聊天仍在继续；本副本没有包含后续未核验内容。KV cache 合并到记录 08，CPU 编译实验为记录 09。新增内容均为个人配套实验，不是官方作业或整门课程完成证明。真实 GPU 实验按学习者要求跳过。
+这次历史发布以冻结的 29/30 号脚本和原始结果为界，当时源学习聊天仍在继续。KV cache 合并到记录 08，CPU 编译实验为记录 09。新增内容均为个人配套实验，不是官方作业或整门课程完成证明。当时按学习安排跳过真实 GPU 实验，后续实际运行见文末续篇。
 
 ```bash
 .venv/bin/python 29_kv_cache.py --output results/29_kv_cache-rerun.json
@@ -127,4 +128,17 @@ python3.11 -m venv .venv
 
 31 号 `--gloo` 实际启动单机两个 CPU 进程，执行手工 all-reduce SUM 和一次 SGD 对照；需要 PyTorch 构建启用 Gloo。未加该参数会记为 `not_requested`。局部 loss 按样本数加权是当前每样本输出维数相同、元素均值 MSE 的条件；token loss 需要对应实际全局分母。ZeRO 字节数是持久状态模型，没有执行 FSDP/ZeRO。
 
-32 号流水线与 37 号连续批处理只使用输入的模拟成本，不能当成硬件计时。33 号页池预分配，回收逻辑页不缩小底层张量，gather 会额外物化连续 K/V。34 号是条件概率小模型，枚举单步质量并记录首 token 频率，没有 Transformer 并行验证或速度测量。35 号只做一次 LoRA SGD 步；均匀 4-bit 码本不是 NF4/QLoRA。36 号串行执行 CPU 专家；容量截断会改变输出。真实 GPU 实测继续按要求跳过。
+32 号流水线与 37 号连续批处理只使用输入的模拟成本，不能当成硬件计时。33 号页池预分配，回收逻辑页不缩小底层张量，gather 会额外物化连续 K/V。34 号是条件概率小模型，枚举单步质量并记录首 token 频率，没有 Transformer 并行验证或速度测量。35 号只做一次 LoRA SGD 步；均匀 4-bit 码本不是 NF4/QLoRA。36 号串行执行 CPU 专家；容量截断会改变输出。这批历史实验均在 CPU 上运行。
+
+## 2026-10-19：实际 GPU 验证与 KV 页粒度项目实验
+
+GPU 验证环境报告 Python 3.12.3、PyTorch 2.7.0+cu128、Triton 3.3.0、CUDA Toolkit 12.8，设备名称报告为 RTX 4080 SUPER。CPU 历史报告使用另一套环境，不覆盖其依赖和数值。GPU 环境安装说明见 `requirements-gpu.txt` 与 `GPU_REPRODUCE.md`。38 号、原生 runner、两份 JSON 均从源学习仓库冻结；发布端核对源码哈希、24 组逐次 event 数据与中位数、原生命令退出码，没有在 Mac 上假称复跑 GPU。
+
+```bash
+python cuda/run_native_checks.py --output results/cuda-native-rerun.json
+python 38_gpu_kernels.py --output results/38-gpu-rerun.json
+```
+
+原生 CUDA 向量加法和矩阵乘法已编译运行，指定的 Compute Sanitizer 检查未报告错误。Triton 向量加法、两阶段归约、矩阵乘法及显式 MATH/FLASH SDPA 前向通过数值容差检查。CUDA event 时间是调用提交区间，可能包含分配或 Python 提交造成的 GPU 空闲，不是孤立 kernel 或端到端服务延迟。未测量多 GPU、训练收敛或完整 LLM；手写 Triton 归约/矩阵在本次计时中慢于 PyTorch。
+
+记录 14 复用 33 号缓存管理，比较静态预留、动态拼接、独立分页和共享分页。源实验 210 组配置及1470次计时已完成；发布端从冻结代码重跑完整扫描并核对所有存储/复制计数与输出。两项项目测试及此前测试共54项通过，日志在 `results/38_cpu_tests.txt`。课程项目提案、最终报告 PDF、视频和正式提交状态不在这个代码实验发布中作完成声明。
