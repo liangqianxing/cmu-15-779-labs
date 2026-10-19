@@ -1,0 +1,31 @@
+{
+  "recorded_at": "2026-10-19T09:49:52.104860+08:00",
+  "script_sha256": "b6704db420740196a623f27a0e2f27edf9f915356a9c459d02e296f95bd7a0b8",
+  "device": "cpu",
+  "gpu_status": "skipped_by_user_request",
+  "samples": 20000,
+  "target_first_token": [
+    0.65,
+    0.25,
+    0.1
+  ],
+  "draft_first_token": [
+    0.5708333333333334,
+    0.2708333333333333,
+    0.15833333333333333
+  ],
+  "exact_corrected_marginal": [
+    0.65,
+    0.25,
+    0.1
+  ],
+  "sampled_first_token_frequencies": [
+    0.65255,
+    0.24975,
+    0.0977
+  ],
+  "mean_accepted_draft_tokens": 3.3182,
+  "mean_emitted_tokens_per_round": 4.3182,
+  "rejected_rounds": 5085,
+  "scope": "Exact branch-mass calculation plus seeded Monte Carlo of context-dependent toy models; no real LLM, parallel target pass, KV rollback or latency evidence"
+}

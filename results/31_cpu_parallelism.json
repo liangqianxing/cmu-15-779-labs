@@ -1,0 +1,73 @@
+{
+  "recorded_at": "2026-10-19T09:02:19.112181+08:00",
+  "script_sha256": "65ec23631bdfbe21365e27106cd234c3d3fc650e2d4f967eef9f41874256edff",
+  "environment": {
+    "python": "3.11.15",
+    "torch": "2.14.1",
+    "architecture": "arm64",
+    "device": "cpu"
+  },
+  "gpu_status": "skipped_by_user_request",
+  "cuda_execution_verified": false,
+  "data_parallel": {
+    "shard_samples": [
+      4,
+      3
+    ],
+    "weighted_gradients_close": true,
+    "weighted_max_abs_error": 1.1102230246251565e-16,
+    "naive_rank_average_max_abs_error": 0.07119473782893948
+  },
+  "tensor_parallel": {
+    "shape": [
+      7,
+      5,
+      9
+    ],
+    "parts": 2,
+    "column_concat_max_abs_error": 2.220446049250313e-16,
+    "row_sum_max_abs_error": 8.881784197001252e-16,
+    "execution": "Serial CPU partition model; not parallel communication"
+  },
+  "zero_storage": {
+    "parameters": 1000000,
+    "world_size": 4,
+    "per_rank_bytes": {
+      "replicated": 16000000,
+      "zero1": 7000000,
+      "zero2": 5500000,
+      "zero3": 4000000
+    },
+    "scope": "Analytical persistent model states with padded equal shards; excludes activations, temporary gathers, communication buffers, allocator and offload",
+    "bytes_per_parameter_assumption": {
+      "parameters": 2,
+      "gradients": 2,
+      "optimizer_master_and_moments": 12
+    }
+  },
+  "gloo": {
+    "status": "executed",
+    "world_size": 2,
+    "scope": "Two real CPU processes on one host; no multi-host or GPU communication measured",
+    "ranks": [
+      {
+        "rank": 0,
+        "samples": 4,
+        "backend": "gloo",
+        "device": "cpu",
+        "gradients_close": true,
+        "sgd_update_close": true,
+        "max_abs_error": 1.1102230246251565e-16
+      },
+      {
+        "rank": 1,
+        "samples": 3,
+        "backend": "gloo",
+        "device": "cpu",
+        "gradients_close": true,
+        "sgd_update_close": true,
+        "max_abs_error": 1.1102230246251565e-16
+      }
+    ]
+  }
+}

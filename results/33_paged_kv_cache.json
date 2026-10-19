@@ -1,0 +1,38 @@
+{
+  "recorded_at": "2026-10-19T09:49:52.938763+08:00",
+  "script_sha256": "35b9eb75c275af0023d1d951d00948b928f4b725dedf5cb08b9c9e7515c6b977",
+  "torch": "2.14.1",
+  "device": "cpu",
+  "gpu_status": "skipped_by_user_request",
+  "shared_prefix": {
+    "active_pages": 2,
+    "free_pages": 14,
+    "active_page_bytes": 896,
+    "pool_tensor_bytes": 7168,
+    "logical_token_references": 18,
+    "allocations": 2,
+    "copied_token_slots": 0
+  },
+  "after_divergence": {
+    "active_pages": 4,
+    "free_pages": 12,
+    "active_page_bytes": 1792,
+    "pool_tensor_bytes": 7168,
+    "logical_token_references": 20,
+    "allocations": 4,
+    "copied_token_slots": 4
+  },
+  "after_release": {
+    "active_pages": 0,
+    "free_pages": 16,
+    "active_page_bytes": 0,
+    "pool_tensor_bytes": 7168,
+    "logical_token_references": 0,
+    "allocations": 4,
+    "copied_token_slots": 4
+  },
+  "max_abs_attention_error": 0.0,
+  "prefix_tokens": 6,
+  "block_size": 4,
+  "scope": "Real CPU tensors and allocator; gather materializes K/V; no GPU paged-attention kernel, radix tree, LLM or throughput claim"
+}

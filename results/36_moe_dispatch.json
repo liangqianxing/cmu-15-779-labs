@@ -1,0 +1,66 @@
+{
+  "recorded_at": "2026-10-19T09:49:52.938851+08:00",
+  "script_sha256": "7ee3617662a73bb7d57709f751bc46c6254a9ac8d9572d6805e6f589400354c9",
+  "device": "cpu",
+  "torch": "2.14.1",
+  "gpu_status": "skipped_by_user_request",
+  "tokens": 13,
+  "experts": 4,
+  "top_k": 2,
+  "routing": {
+    "requested_assignments_per_expert": [
+      7,
+      8,
+      2,
+      9
+    ],
+    "processed_assignments_per_expert": [
+      7,
+      8,
+      2,
+      9
+    ],
+    "dropped_assignments": 0,
+    "capacity": null,
+    "overflow_policy": "Keep earliest token assignments per expert, drop overflow, retain original gates without renormalization"
+  },
+  "dense_reference_max_abs_error": 3.552713678800501e-15,
+  "expert_token_rows_dense_all": 52,
+  "expert_token_rows_sparse": 26,
+  "skewed_routing": {
+    "requested_assignments_per_expert": [
+      13,
+      13,
+      0,
+      0
+    ],
+    "processed_assignments_per_expert": [
+      13,
+      13,
+      0,
+      0
+    ],
+    "dropped_assignments": 0,
+    "capacity": null,
+    "overflow_policy": "Keep earliest token assignments per expert, drop overflow, retain original gates without renormalization"
+  },
+  "capacity_limited": {
+    "requested_assignments_per_expert": [
+      13,
+      13,
+      0,
+      0
+    ],
+    "processed_assignments_per_expert": [
+      7,
+      7,
+      0,
+      0
+    ],
+    "dropped_assignments": 12,
+    "capacity": 7,
+    "overflow_policy": "Keep earliest token assignments per expert, drop overflow, retain original gates without renormalization"
+  },
+  "capacity_output_max_abs_difference": 11.381231356301349,
+  "scope": "Real CPU dispatch/combine with serial expert execution; no expert-parallel all-to-all, GPU grouped GEMM, trained router or measured acceleration"
+}

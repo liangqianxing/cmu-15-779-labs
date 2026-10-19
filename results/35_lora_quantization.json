@@ -1,0 +1,23 @@
+{
+  "recorded_at": "2026-10-19T09:49:52.938762+08:00",
+  "script_sha256": "5077cfd08e3c720c4cfe9743aa3450b2e715512abab05c99aa915c3e63e6b144",
+  "device": "cpu",
+  "torch": "2.14.1",
+  "gpu_status": "skipped_by_user_request",
+  "base_parameters": 192,
+  "trainable_adapter_parameters": 84,
+  "initial_forward_max_abs_error": 0.0,
+  "initial_gradient_norms": {
+    "a": 0.0,
+    "b": 0.18574575044023048
+  },
+  "base_weight_unchanged": true,
+  "merged_max_abs_error": 1.7763568394002505e-15,
+  "uniform4": {
+    "packed_bytes": 96,
+    "fp32_scale_bytes": 12,
+    "max_abs_weight_error": 0.17549756130032776,
+    "output_max_abs_error": 0.8775516177189573
+  },
+  "scope": "One adapter SGD update and merge on CPU; uniform packed quantization with FP32 scales, not NF4, double quantization, paged optimizer or actual QLoRA training"
+}
