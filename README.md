@@ -22,7 +22,7 @@ python3.11 -m venv .venv
 | [01：自动求导与线性回归](https://liangqianxing.github.io/posts/cmu-15-779-pytorch-autograd-linear-regression/) | `01` 至 `03` | 手动梯度下降、SGD、无偏置线性回归 |
 | [02：nn.Linear、张量形状与 ReLU](https://liangqianxing.github.io/posts/cmu-15-779-pytorch-linear-module-relu/) | `04` 至 `10` | 带偏置回归、模型封装、非线性拟合 |
 | [03：DataLoader、模型保存与批量推理](https://liangqianxing.github.io/posts/cmu-15-779-pytorch-dataloader-checkpoints-batching/) | `11` 至 `16` | 分批训练、参数恢复、推理计时和矩阵乘法 |
-| [04：多输出线性层、ReLU 与绝对值网络](https://liangqianxing.github.io/posts/cmu-15-779-pytorch-linear-relu-absolute-value/) | `16` 至 `19` | Linear 参数对照、多输出、逐层计算和绝对值拟合 |
+| [04：多输出线性层、ReLU 与绝对值网络](https://liangqianxing.github.io/posts/cmu-15-779-pytorch-linear-relu-absolute-value/) | `16` 至 `21` | Linear 参数对照、多输出、逐层计算、绝对值拟合、分段线性折点斜率与内插/外推泛化对照 |
 | [05：Profiler、算子调用与批量推理](https://liangqianxing.github.io/posts/cmu-15-779-profiler-operator-batching/) | `22` 至 `24` | 前向计算分析、调用次数与固定工作量的 batch size 扫描 |
 | [06：CUDA 线程索引与边界检查](https://liangqianxing.github.io/posts/cmu-15-779-cuda-thread-indexing/) | `25`、`38` | CPU 索引演示；新增原生 CUDA 编译、memcheck 与 Triton 向量加法 |
 | [07：矩阵分块、数据复用与树形归约](https://liangqianxing.github.io/posts/cmu-15-779-matmul-tiling-tree-reduction/) | `26`、`27`、`38` | CPU 逻辑计数；新增 CUDA 矩阵及 Triton 归约/矩阵实测 |
@@ -56,6 +56,8 @@ python3.11 -m venv .venv
 .venv/bin/python 17_multi_output.py
 .venv/bin/python 18_relu_steps.py
 .venv/bin/python 19_learn_abs.py
+.venv/bin/python 20_piecewise_linear_slopes.py
+.venv/bin/python 21_generalization_split.py
 .venv/bin/python 22_profile_forward.py
 .venv/bin/python 23_profile_batching.py
 .venv/bin/python 24_batch_size_sweep.py --output results/24_batch_size_sweep-rerun.json
@@ -93,7 +95,7 @@ python3.11 -m venv .venv
 .venv/bin/python -m unittest discover -s tests -v
 ```
 
-`tests/` 现包含 54 项测试，覆盖矩阵乘法边界与计数、归约长度及浮点求和顺序、Attention 掩码、分块、数据类型、运行最大值修正和非法输入。Attention 只验证前向，不包含反向传播、dropout、padding mask 或全遮蔽行，不是完整 Transformer，也不是 FlashAttention GPU kernel。
+`tests/` 现包含 56 项测试，覆盖分段线性 ReLU 折点斜率与内插/外推、矩阵乘法边界与计数、归约长度及浮点求和顺序、Attention 掩码、分块、数据类型、运行最大值修正和非法输入。Attention 只验证前向，不包含反向传播、dropout、padding mask 或全遮蔽行，不是完整 Transformer，也不是 FlashAttention GPU kernel。
 
 ## 2026-10-19：Attention 续篇与 CPU 编译实验
 
